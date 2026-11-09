@@ -1,8 +1,8 @@
 /* ==========================================================================
    LINQERY™ — EXECUTIVE STYLESHEET (css/style.css)
    Target: Zero frameworks, Pure Performance (<50ms), High Visual Impact B2B
-   Palette: Deep Navy Slate, Satin Titanium, Electric Orange, Cyber Emerald
-   Responsive: Mobile, Tablet (Portrait & Landscape), Desktop
+   Palette: Deep Navy Slate, Satin Titanium, Warm Ivory, Electric Orange, Azure
+   Responsive: Mobile, Tablet (Portrait & Landscape), Desktop, Ultra-wide
    ========================================================================== */
 
 :root {
@@ -11,6 +11,13 @@
   --bg-card: rgba(13, 24, 48, 0.7);
   --bg-card-hover: rgba(18, 33, 66, 0.85);
   --bg-satin: rgba(241, 245, 249, 0.04);
+  
+  /* Sezioni e Card in Bianco Panna / Avorio Caldo (Report McKinsey Style) */
+  --bg-ivory: #f8fafc;
+  --bg-ivory-surface: #ffffff;
+  --text-dark: #0f172a;
+  --text-dark-muted: #64748b;
+  --border-ivory: #e2e8f0;
   
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
@@ -21,7 +28,10 @@
   --orange-glow: rgba(239, 133, 46, 0.35);
   --orange-glow-intense: rgba(239, 133, 46, 0.6);
   --emerald-accent: #10b981;
-  --cyan-accent: #00f3ff;
+  
+  /* Azzurro Istituzionale Carta da Zucchero (Sostituisce il Ciano Elettrico) */
+  --azure-accent: #4075aa;
+  --azure-light: #5b8ec2;
   
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-card: rgba(255, 255, 255, 0.12);
@@ -36,6 +46,7 @@
   --radius-full: 9999px;
   
   --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
+  --shadow-ivory: 0 20px 50px -10px rgba(0, 0, 0, 0.35);
   --shadow-glow: 0 0 25px var(--orange-glow);
 }
 
@@ -64,6 +75,10 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 ::selection {
@@ -139,8 +154,10 @@ ul {
 .text-white { color: var(--text-white) !important; }
 .text-slate-300 { color: #cbd5e1 !important; }
 .text-slate-400 { color: #94a3b8 !important; }
+.text-slate-500 { color: #64748b !important; }
 .text-emerald { color: var(--emerald-accent) !important; }
-.text-cyan { color: var(--cyan-accent) !important; }
+.text-azure { color: var(--azure-light) !important; }
+.text-primary-dark { color: var(--text-dark) !important; }
 
 .text-gradient-orange {
   background: linear-gradient(135deg, #ffa451 0%, #ef852e 60%, #d96810 100%);
@@ -272,7 +289,7 @@ ul {
 }
 
 /* ==========================================================================
-   00. HEADER & BARRA SUPERIORE (Zero Z-Index Bug)
+   00. HEADER & NAVIGAZIONE (Anti-Collisione & Anti-Deformazione)
    ========================================================================== */
 .header-fixed {
   position: fixed;
@@ -280,13 +297,19 @@ ul {
   left: 0;
   width: 100%;
   height: 72px;
-  z-index: 9999; /* Isola l'header sopra qualunque elemento o carosello */
+  z-index: 9999;
   background: rgba(6, 11, 23, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.header-fixed.header-scrolled {
+  background: rgba(6, 11, 23, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .header-inner {
@@ -300,6 +323,7 @@ ul {
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-white);
+  white-space: nowrap;
 }
 
 .brand-mark {
@@ -318,6 +342,7 @@ ul {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .nav-item:hover {
@@ -327,9 +352,10 @@ ul {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
+/* Slot Pill Blindata: Non va MAI a capo su 3 righe */
 .slot-pill {
   display: flex;
   align-items: center;
@@ -340,6 +366,8 @@ ul {
   border-radius: var(--radius-full);
   font-size: 0.78rem;
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .pulse-dot {
@@ -349,6 +377,7 @@ ul {
   background-color: var(--emerald-accent);
   box-shadow: 0 0 10px var(--emerald-accent);
   animation: pulseBeacon 2s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 @keyframes pulseBeacon {
@@ -359,6 +388,137 @@ ul {
 .slot-number {
   color: var(--orange-accent);
   font-family: var(--font-code);
+}
+
+/* Hamburger Trigger */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: 8px;
+  z-index: 10001;
+  transition: all 0.25s ease;
+}
+
+.hamburger-btn .bar {
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn.active .bar-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.active .bar-2 {
+  opacity: 0;
+}
+
+.hamburger-btn.active .bar-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Drawer Mobile */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(340px, 86vw);
+  height: 100dvh;
+  background: #060b17;
+  border-left: 1px solid var(--border-card);
+  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.8rem;
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-nav-drawer.open {
+  right: 0;
+}
+
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.close-drawer-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-drawer-btn:hover {
+  color: #ffffff;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem 0;
+}
+
+.mobile-nav-item {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mobile-nav-item.mobile-highlight {
+  color: var(--orange-accent);
+  padding-top: 0.5rem;
+}
+
+.mobile-nav-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.2rem;
+}
+
+.mobile-slot-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ==========================================================================
@@ -444,7 +604,7 @@ ul {
   color: var(--emerald-accent);
 }
 
-/* CSS-Only Dashboard Terminal UI */
+/* Dashboard Terminal UI */
 .css-terminal-card {
   background: rgba(10, 19, 41, 0.75);
   border: 1px solid var(--border-card);
@@ -567,7 +727,7 @@ ul {
 }
 
 /* ==========================================================================
-   02. SOCIAL PROOF MARQUEE (60-120 FPS Native Translate3D)
+   02. SOCIAL PROOF MARQUEE
    ========================================================================== */
 .marquee-strip {
   width: 100%;
@@ -760,7 +920,7 @@ ul {
 }
 
 /* ==========================================================================
-   05. SEZIONE 03 — CHI SIAMO & EXECUTIVE FOUNDER
+   05. SEZIONE 03 — CHI SIAMO & EXECUTIVE FOUNDER (SPAZIO FOTO POTENZIATO)
    ========================================================================== */
 .section-chi-siamo {
   background: var(--bg-navy-surface);
@@ -778,7 +938,7 @@ ul {
   background: var(--bg-navy-deep);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
-  padding: 2.2rem;
+  padding: 2.4rem;
   box-shadow: var(--shadow-card);
   position: relative;
 }
@@ -786,24 +946,27 @@ ul {
 .founder-media-box {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 1.8rem;
+  margin-bottom: 1.8rem;
 }
 
+/* Cornice fotografica ingrandita, autorevole e pronta per il portrait */
 .founder-avatar-frame {
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-lg);
   border: 2px solid var(--orange-accent);
-  padding: 3px;
+  padding: 4px;
   background: var(--bg-navy-surface);
   flex-shrink: 0;
+  box-shadow: 0 10px 30px rgba(239, 133, 46, 0.25);
+  overflow: hidden;
 }
 
 .avatar-placeholder {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: calc(var(--radius-lg) - 4px);
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   display: flex;
   flex-direction: column;
@@ -811,8 +974,14 @@ ul {
   justify-content: center;
 }
 
+.avatar-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .avatar-initials {
-  font-size: 1.35rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--orange-accent);
   font-family: var(--font-code);
@@ -823,21 +992,22 @@ ul {
 }
 
 .founder-name {
-  font-size: 1.25rem;
-  margin-bottom: 0.2rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .founder-role {
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: var(--azure-light);
   font-family: var(--font-code);
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .founder-statement p {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: #cbd5e1;
-  line-height: 1.65;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
 }
 
@@ -863,7 +1033,7 @@ ul {
 }
 
 /* ==========================================================================
-   06. SEZIONE 04 — MANIFESTO (TRITTICO CARD)
+   06. SEZIONE 04 — MANIFESTO
    ========================================================================== */
 .section-manifesto {
   background: var(--bg-navy-deep);
@@ -909,7 +1079,7 @@ ul {
 }
 
 /* ==========================================================================
-   07. SEZIONE 05 — COSTO DELL'ATTESA (METRICHE)
+   07. SEZIONE 05 — COSTO DELL'ATTESA (METRICHE ANTI-SPEZZAMENTO)
    ========================================================================== */
 .section-metrics-urgency {
   background: var(--bg-navy-surface);
@@ -926,7 +1096,7 @@ ul {
 .metric-glass-card {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.8rem;
   background: var(--bg-navy-deep);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
@@ -938,12 +1108,14 @@ ul {
   transform: translateX(6px);
 }
 
+/* "9 su 10", "87%", "95%" restano SEMPRE su un'unica riga */
 .metric-number {
-  font-size: 2.8rem;
+  font-size: clamp(2.2rem, 3.2vw, 2.8rem);
   font-weight: 800;
   font-family: var(--font-code);
   line-height: 1;
-  min-width: 140px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .metric-txt {
@@ -959,7 +1131,7 @@ ul {
 }
 
 /* ==========================================================================
-   08. SEZIONE 06 — IL PROTOCOLLO FUNNELINQ™ (PIPELINE)
+   08. SEZIONE 06 — IL PROTOCOLLO FUNNELINQ™ (SOTTOTITOLI CALIBRATI)
    ========================================================================== */
 .section-funnelinq {
   background: var(--bg-navy-deep);
@@ -1023,12 +1195,16 @@ ul {
   margin-bottom: 0.4rem;
 }
 
+/* Sottotitolo tra virgolette ridotto per entrare su riga singola senza parole orfane */
 .level-quote {
-  font-size: 0.8rem;
-  color: var(--cyan-accent);
+  font-size: 0.76rem;
+  color: var(--azure-light);
   font-style: italic;
   margin-bottom: 0.8rem;
   line-height: 1.35;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .level-desc {
@@ -1121,7 +1297,7 @@ ul {
 }
 
 /* ==========================================================================
-   10. SEZIONE 08 — CASI STUDIO (TAB INTERATTIVI)
+   10. SEZIONE 08 — CASI STUDIO (CONTRASTO AVORIO / BIANCO PANNA MCKINSEY)
    ========================================================================== */
 .section-casi-studio {
   background: var(--bg-navy-deep);
@@ -1144,18 +1320,20 @@ ul {
   color: #cbd5e1;
 }
 
+/* Card in Bianco Panna Satinato ad altissimo valore esecutivo */
 .cases-tab-interface {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
+  background: var(--bg-ivory);
+  border: 1px solid var(--border-ivory);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-ivory);
+  color: var(--text-dark);
 }
 
 .tab-controls {
   display: flex;
   gap: 0.75rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-ivory);
   padding-bottom: 1.5rem;
   margin-bottom: 2.5rem;
   overflow-x: auto;
@@ -1169,7 +1347,7 @@ ul {
 .tab-btn {
   background: transparent;
   border: 1px solid transparent;
-  color: var(--text-secondary);
+  color: var(--text-dark-muted);
   padding: 0.6rem 1.2rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-main);
@@ -1181,8 +1359,8 @@ ul {
 }
 
 .tab-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-dark);
+  background: rgba(15, 23, 42, 0.05);
 }
 
 .tab-btn.active {
@@ -1192,7 +1370,7 @@ ul {
 }
 
 .tab-btn.highlight-tab {
-  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border: 1px dashed rgba(15, 23, 42, 0.25);
 }
 
 .case-panel {
@@ -1231,32 +1409,34 @@ ul {
 
 .case-industry {
   font-size: 1.45rem;
+  color: var(--text-dark);
   margin-bottom: 0.35rem;
 }
 
 .case-duration {
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: var(--text-dark-muted);
   margin-bottom: 1rem;
 }
 
 .case-premise {
   font-size: 0.88rem;
-  color: var(--text-secondary);
+  color: #334155;
   line-height: 1.5;
 }
 
 .case-numbers {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .num-block {
-  background: rgba(6, 11, 23, 0.6);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-ivory-surface);
+  border: 1px solid var(--border-ivory);
   padding: 1.2rem;
   border-radius: var(--radius-md);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
 .num-big {
@@ -1270,26 +1450,29 @@ ul {
 
 .num-label {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--text-dark-muted);
 }
 
 .case-quote-box {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-ivory-surface);
   border-left: 3px solid var(--orange-accent);
+  border: 1px solid var(--border-ivory);
+  border-left-width: 3px;
   padding: 1.4rem;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
 .quote-icon {
   width: 24px;
   height: 24px;
-  color: rgba(239, 133, 46, 0.4);
+  color: rgba(239, 133, 46, 0.5);
   margin-bottom: 0.6rem;
 }
 
 .quote-text {
   font-size: 0.88rem;
-  color: #cbd5e1;
+  color: #1e293b;
   font-style: italic;
   line-height: 1.6;
 }
@@ -1299,11 +1482,12 @@ ul {
 }
 
 .case-action-card {
-  background: rgba(6, 11, 23, 0.8);
+  background: var(--bg-navy-deep);
   border: 1px solid rgba(239, 133, 46, 0.3);
   padding: 1.8rem;
   border-radius: var(--radius-md);
   text-align: center;
+  color: #ffffff;
 }
 
 .case-action-card p {
@@ -1745,6 +1929,34 @@ ul {
    RESPONSIVE DESIGN (TABLET PORTRAIT & LANDSCAPE, MOBILE)
    ========================================================================== */
 
+/* Tablet Portrait Specifico (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 641px) and (orientation: portrait) {
+  .hero-section {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+    min-height: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.8rem;
+  }
+
+  .hero-title {
+    font-size: 3.1rem;
+  }
+
+  .hero-desc {
+    max-width: 100%;
+  }
+
+  .hero-visual {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
 /* Tablet Orizzontale & Desktop Piccolo (<= 1024px) */
 @media (max-width: 1024px) {
   .pipeline-flow-container {
@@ -1787,12 +1999,6 @@ ul {
     gap: 3rem;
   }
 
-  .hero-visual {
-    max-width: 600px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
   .triptych-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
@@ -1816,6 +2022,15 @@ ul {
   .footer-brand-col {
     grid-column: span 2;
   }
+
+  /* Attiva Hamburger su schermi fino a 880px */
+  .nav-desktop {
+    display: none !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+  }
 }
 
 /* Smartphone Verticale (<= 640px) */
@@ -1835,13 +2050,14 @@ ul {
     padding-bottom: 3.5rem;
   }
 
-  .nav-desktop {
-    display: none; /* Riserva spazio su mobile compatto */
+  /* Slot pill compatta: evita rotture su tre righe */
+  .slot-pill {
+    padding: 0.25rem 0.55rem;
+    font-size: 0.72rem;
   }
 
-  .slot-pill {
-    padding: 0.25rem 0.6rem;
-    font-size: 0.72rem;
+  .slot-pill .slot-label {
+    display: none; /* Mostra unicamente: ● 2/5 */
   }
 
   .hero-title {
@@ -1912,8 +2128,35 @@ ul {
   }
 }
 
-/* Smartphone Orizzontale (Landscape a Bassa Altezza <= 500px) */
-@media (orientation: landscape) and (max-height: 500px) {
+/* Smartphone Orizzontale / Landscape a Bassa Altezza (<= 550px) */
+@media (orientation: landscape) and (max-height: 550px) {
+  .header-fixed {
+    height: 54px;
+  }
+
+  /* Nasconde la navbar standard ed espone hamburger per evitare sovrapposizioni */
+  .nav-desktop {
+    display: none !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+  }
+
+  .header-cta-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.76rem;
+  }
+
+  .slot-pill {
+    padding: 0.25rem 0.55rem;
+    font-size: 0.72rem;
+  }
+
+  .slot-pill .slot-label {
+    display: none;
+  }
+
   .section-pad {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
@@ -1921,12 +2164,18 @@ ul {
 
   .hero-section {
     min-height: auto;
+    margin-top: 54px;
     padding-top: 2rem;
     padding-bottom: 2.5rem;
   }
 
+  .hero-title {
+    font-size: 1.95rem;
+    line-height: 1.15;
+  }
+
   .hero-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.8rem;
   }
 }
