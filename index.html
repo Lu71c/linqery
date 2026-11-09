@@ -13,7 +13,7 @@
 <body class="bg-navy-deep text-slate-100 antialiased selection:bg-orange-accent selection:text-white">
 
   <!-- ==========================================================================
-       00. HEADER & NAVIGAZIONE DI SISTEMA
+       00. HEADER & NAVIGAZIONE DI SISTEMA (CON SUPPORTO MOBILE & LANDSCAPE)
        ========================================================================== -->
   <header class="header-fixed" data-section-id="sec_header">
     <div class="header-inner container-fluid">
@@ -21,6 +21,7 @@
         <span class="brand-text">LINQERY<span class="brand-mark">™</span></span>
       </a>
 
+      <!-- Menu Desktop standard -->
       <nav class="nav-desktop" data-block-id="nav_links">
         <a href="#specchio" class="nav-item">Perché noi</a>
         <a href="#metodo" class="nav-item">Metodo FUNNELINQ™</a>
@@ -34,12 +35,43 @@
           <span class="slot-label">Slot mese:</span>
           <span class="slot-number" data-field="slot_disponibili_header">2 / 5</span>
         </div>
-        <a href="#candidati" class="btn btn-sm btn-primary">
+        <a href="#candidati" class="btn btn-sm btn-primary header-cta-btn">
           <span>Candidati ora</span>
           <svg class="icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
+
+        <!-- Hamburger trigger: visibile su smartphone e landscape a bassa altezza -->
+        <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Apri Menu di Navigazione" aria-expanded="false" data-block-id="btn_hamburger">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </button>
       </div>
     </div>
+
+    <!-- Drawer mobile a comparsa per evitare collisioni orizzontali -->
+    <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true" data-block-id="mobile_drawer">
+      <div class="mobile-nav-header">
+        <span class="brand-text">LINQERY<span class="brand-mark">™</span></span>
+        <button id="closeMobileNavBtn" class="close-drawer-btn" aria-label="Chiudi Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="#specchio" class="mobile-nav-item">Perché noi</a>
+        <a href="#metodo" class="mobile-nav-item">Metodo FUNNELINQ™</a>
+        <a href="#casi-studio" class="mobile-nav-item">Casi Studio</a>
+        <a href="#faq" class="mobile-nav-item">Domande Frequenti</a>
+        <a href="#candidati" class="mobile-nav-item mobile-highlight">Prenota l'audit gratuito →</a>
+      </nav>
+      <div class="mobile-nav-footer">
+        <div class="mobile-slot-badge">
+          <span class="pulse-dot"></span>
+          <span>Slot disponibili questo mese: <strong>2 / 5</strong></span>
+        </div>
+      </div>
+    </div>
+    <div id="mobileNavBackdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
   </header>
 
   <main>
@@ -355,7 +387,7 @@
           <h2 class="section-title" data-field="metodo_title">
             <span class="text-orange">FUNNELINQ™</span>.<br>
             Quattro livelli. Un solo obiettivo:<br>
-            <span class="text-cyan">opportunità commerciali</span>.
+            <span class="text-azure">opportunità commerciali</span>.
           </h2>
           <p class="section-sub" data-field="metodo_subtitle">
             Non un funnel di marketing. Un protocollo commerciale proprietario, scalabile e misurabile: costruito per generare fatturato, non per collezionare visualizzazioni.
@@ -499,7 +531,7 @@
     </section>
 
     <!-- ==========================================================================
-         10. SEZIONE 08 — CASI STUDIO & PROVE SUL CAMPO
+         10. SEZIONE 08 — CASI STUDIO (TAB INTERFACCIA CON CONTRASTO PANNA)
          ========================================================================== -->
     <section id="casi-studio" class="section-pad section-casi-studio" data-section-id="sec_casi_studio">
       <div class="container">
@@ -518,7 +550,7 @@
           <div class="kpi-tag"><strong class="text-white">×3</strong> Contratti industriali chiusi in 45 giorni</div>
         </div>
 
-        <!-- Selettore Tab Casi Studio -->
+        <!-- Selettore Tab Casi Studio in Avorio/Panna Satinato -->
         <div class="cases-tab-interface" data-block-id="cases_tabs_wrapper">
           <div class="tab-controls" role="tablist">
             <button class="tab-btn active" data-tab-target="caso-1">Produzione Macchinari</button>
@@ -543,7 +575,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-white" data-field="c1_kpi_1_val">+1.600</span>
+                    <span class="num-big text-primary-dark" data-field="c1_kpi_1_val">+1.600</span>
                     <span class="num-label" data-field="c1_kpi_1_lbl">Connessioni target con buyer e decisori</span>
                   </div>
                   <div class="num-block">
@@ -573,7 +605,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-white" data-field="c2_kpi_1_val">+2.000</span>
+                    <span class="num-big text-primary-dark" data-field="c2_kpi_1_val">+2.000</span>
                     <span class="num-label" data-field="c2_kpi_1_lbl">Connessioni con responsabili R&D e Procurement</span>
                   </div>
                   <div class="num-block">
@@ -603,7 +635,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-white" data-field="c3_kpi_1_val">+1.300</span>
+                    <span class="num-big text-primary-dark" data-field="c3_kpi_1_val">+1.300</span>
                     <span class="num-label" data-field="c3_kpi_1_lbl">Connessioni con CFO e Plant Manager</span>
                   </div>
                   <div class="num-block">
@@ -633,7 +665,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-white" data-field="c4_kpi_1_val">+1.800</span>
+                    <span class="num-big text-primary-dark" data-field="c4_kpi_1_val">+1.800</span>
                     <span class="num-label" data-field="c4_kpi_1_lbl">Decision maker del canale industriale</span>
                   </div>
                   <div class="num-block">
@@ -663,7 +695,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-slate-400">???</span>
+                    <span class="num-big text-slate-500">???</span>
                     <span class="num-label">Buyer profilati nella tua nicchia</span>
                   </div>
                   <div class="num-block">
