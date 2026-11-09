@@ -13,7 +13,7 @@
 <body class="bg-navy-deep text-slate-100 antialiased selection:bg-orange-accent selection:text-white">
 
   <!-- ==========================================================================
-       00. HEADER & NAVIGAZIONE DI SISTEMA (CON SUPPORTO MOBILE & LANDSCAPE)
+       00. HEADER & NAVIGAZIONE DI SISTEMA (DESKTOP, TABLET & MOBILE DRAWER)
        ========================================================================== -->
   <header class="header-fixed" data-section-id="sec_header">
     <div class="header-inner container-fluid">
@@ -30,6 +30,7 @@
       </nav>
 
       <div class="header-actions" data-block-id="header_cta_group">
+        <!-- Pillola slot: visibile su Desktop e Landscape, nascosta su Mobile Portrait via CSS -->
         <div class="slot-pill" data-block-id="slot_counter_header">
           <span class="pulse-dot"></span>
           <span class="slot-label">Slot mese:</span>
@@ -40,7 +41,7 @@
           <svg class="icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
 
-        <!-- Hamburger trigger: visibile su smartphone e landscape a bassa altezza -->
+        <!-- Trigger Hamburger: entra in funzione su Mobile Portrait & Landscape ristretto -->
         <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Apri Menu di Navigazione" aria-expanded="false" data-block-id="btn_hamburger">
           <span class="bar bar-1"></span>
           <span class="bar bar-2"></span>
@@ -49,7 +50,7 @@
       </div>
     </div>
 
-    <!-- Drawer mobile a comparsa per evitare collisioni orizzontali -->
+    <!-- Drawer Mobile Off-Canvas -->
     <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true" data-block-id="mobile_drawer">
       <div class="mobile-nav-header">
         <span class="brand-text">LINQERY<span class="brand-mark">™</span></span>
@@ -255,7 +256,7 @@
     </section>
 
     <!-- ==========================================================================
-         05. SEZIONE 03 — CHI SIAMO & EXECUTIVE FOUNDER
+         05. SEZIONE 03 — CHI SIAMO & EXECUTIVE FOUNDER (INTEGRAZIONE FOTO WEBP)
          ========================================================================== -->
     <section id="chi-siamo" class="section-pad section-chi-siamo" data-section-id="sec_chi_siamo">
       <div class="container">
@@ -274,7 +275,9 @@
           <div class="col-body" data-block-id="chisiamo_founder_card">
             <div class="founder-card-executive">
               <div class="founder-media-box" data-block-id="founder_media">
-                <div class="founder-avatar-frame">
+                <!-- Cornice fotografica: carica img/founder.webp con fallback automatico a placeholder -->
+                <div class="founder-avatar-frame" data-block-id="founder_avatar_frame">
+                  <img src="img/founder.webp" alt="Founder LINQERY™" class="founder-img" data-field="founder_photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                   <div class="avatar-placeholder" data-field="founder_photo_slot">
                     <span class="avatar-initials">LQ</span>
                     <span class="avatar-tag">Executive Strategist</span>
@@ -531,7 +534,7 @@
     </section>
 
     <!-- ==========================================================================
-         10. SEZIONE 08 — CASI STUDIO (TAB INTERFACCIA CON CONTRASTO PANNA)
+         10. SEZIONE 08 — CASI STUDIO (TAB INTERFACCIA CON TESTI AD ALTA DEFINIZIONE)
          ========================================================================== -->
     <section id="casi-studio" class="section-pad section-casi-studio" data-section-id="sec_casi_studio">
       <div class="container">
@@ -550,7 +553,7 @@
           <div class="kpi-tag"><strong class="text-white">×3</strong> Contratti industriali chiusi in 45 giorni</div>
         </div>
 
-        <!-- Selettore Tab Casi Studio in Avorio/Panna Satinato -->
+        <!-- Selettore Tab Casi Studio: i numeri ora adottano text-white per contrasto ottimale -->
         <div class="cases-tab-interface" data-block-id="cases_tabs_wrapper">
           <div class="tab-controls" role="tablist">
             <button class="tab-btn active" data-tab-target="caso-1">Produzione Macchinari</button>
@@ -575,7 +578,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-primary-dark" data-field="c1_kpi_1_val">+1.600</span>
+                    <span class="num-big text-white" data-field="c1_kpi_1_val">+1.600</span>
                     <span class="num-label" data-field="c1_kpi_1_lbl">Connessioni target con buyer e decisori</span>
                   </div>
                   <div class="num-block">
@@ -605,7 +608,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-primary-dark" data-field="c2_kpi_1_val">+2.000</span>
+                    <span class="num-big text-white" data-field="c2_kpi_1_val">+2.000</span>
                     <span class="num-label" data-field="c2_kpi_1_lbl">Connessioni con responsabili R&D e Procurement</span>
                   </div>
                   <div class="num-block">
@@ -635,7 +638,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-primary-dark" data-field="c3_kpi_1_val">+1.300</span>
+                    <span class="num-big text-white" data-field="c3_kpi_1_val">+1.300</span>
                     <span class="num-label" data-field="c3_kpi_1_lbl">Connessioni con CFO e Plant Manager</span>
                   </div>
                   <div class="num-block">
@@ -665,7 +668,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-primary-dark" data-field="c4_kpi_1_val">+1.800</span>
+                    <span class="num-big text-white" data-field="c4_kpi_1_val">+1.800</span>
                     <span class="num-label" data-field="c4_kpi_1_lbl">Decision maker del canale industriale</span>
                   </div>
                   <div class="num-block">
@@ -695,7 +698,7 @@
                 </div>
                 <div class="case-numbers">
                   <div class="num-block">
-                    <span class="num-big text-slate-500">???</span>
+                    <span class="num-big text-slate-400">???</span>
                     <span class="num-label">Buyer profilati nella tua nicchia</span>
                   </div>
                   <div class="num-block">
