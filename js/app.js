@@ -2,13 +2,13 @@
    LINQERY™ — ENGINE CONTROLLER (js/app.js)
    Target: Vanilla ES6+, Zero dipendenze, < 4KB, Reattività 60-120 FPS
    Gestione: 
-   1. Header Sticky & State Scroll
-   2. Navigazione Smooth Scroll & Chiusura Drawer
-   3. Menu Mobile Hamburger & Drawer Off-Canvas
-   4. Vetrina Tab Casi Studio con Trigger Contatori
-   5. FAQ Accordion Esclusivo (<details>)
-   6. Modulo Candidatura Asincrono
-   7. KPI Number Ticker (Supporto Percentuali, Moltiplicatori e "X su Y")
+   1. Header Sticky & Stato Scroll
+   2. Menu Mobile Hamburger & Drawer Off-Canvas (Touch & Click)
+   3. Navigazione Smooth Scroll con Offset Dinamico
+   4. Vetrina Tab Casi Studio con Re-trigger Contatori
+   5. FAQ Accordion Esclusivo (<details> nativo)
+   6. Modulo Candidatura Asincrono con Ricevuta Live
+   7. Motore KPI Number Ticker (Progressione Frazionaria "X su Y", Moltiplicatori e Percentuali)
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -42,38 +42,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const toggleMobileMenu = (forceState) => {
     if (!mobileNavDrawer) return;
+
     const shouldOpen =
       forceState !== undefined
         ? forceState
         : !mobileNavDrawer.classList.contains("open");
 
     mobileNavDrawer.classList.toggle("open", shouldOpen);
+
     if (mobileNavBackdrop) {
       mobileNavBackdrop.classList.toggle("open", shouldOpen);
       mobileNavBackdrop.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
     }
+
     if (mobileMenuBtn) {
       mobileMenuBtn.classList.toggle("active", shouldOpen);
       mobileMenuBtn.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
     }
+
     document.body.classList.toggle("no-scroll", shouldOpen);
   };
 
   if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener("click", () => toggleMobileMenu());
+    mobileMenuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
   }
+
   if (closeMobileNavBtn) {
-    closeMobileNavBtn.addEventListener("click", () => toggleMobileMenu(false));
+    closeMobileNavBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMobileMenu(false);
+    });
   }
+
   if (mobileNavBackdrop) {
-    mobileNavBackdrop.addEventListener("click", () => toggleMobileMenu(false));
+    mobileNavBackdrop.addEventListener("click", () => {
+      toggleMobileMenu(false);
+    });
   }
+
   mobileNavLinks.forEach((link) => {
-    link.addEventListener("click", () => toggleMobileMenu(false));
+    link.addEventListener("click", () => {
+      toggleMobileMenu(false);
+    });
+  });
+
+  // Chiusura automatica con tasto Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobileNavDrawer?.classList.contains("open")) {
+      toggleMobileMenu(false);
+    }
   });
 
   /* ==========================================================================
-     3. NAVIGAZIONE INTERNA & SMOOTH SCROLL CON OFFSET
+     3. NAVIGAZIONE INTERNA & SMOOTH SCROLL CON OFFSET DINAMICO
      ========================================================================== */
   const internalNavLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -85,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        toggleMobileMenu(false); // Chiude il drawer mobile se aperto
+        toggleMobileMenu(false);
 
         const headerHeight = header ? header.offsetHeight : 72;
         const targetPosition =
@@ -125,18 +149,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (targetPanel) {
         targetPanel.classList.add("active");
 
-        // Riattiva l'animazione contatori per i numeri all'interno del pannello aperto
+        // Riattiva l'animazione contatori per i numeri all'interno del pannello visualizzato
         targetPanel.querySelectorAll(".num-big").forEach((numEl) => {
-          if (numEl.dataset.animated !== "true") {
-            animateNumber(numEl);
-          }
+          numEl.dataset.animated = "false";
+          animateValue(numEl);
         });
       }
     });
   });
 
   /* ==========================================================================
-     5. FAQ ACCORDION ESCLUSIVO (<details> con Chiusura Fratelli)
+     5. FAQ ACCORDION ESCLUSIVO (<details> Nativo con Chiusura Fratelli)
      ========================================================================== */
   const faqItems = document.querySelectorAll(".faq-stack .faq-item");
 
@@ -231,13 +254,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================================
-     7. MOTORE DI ANIMAZIONE CONTATORI KPI (Desktop, Tablet e Mobile)
+     7. MOTORE DI ANIMAZIONE CONTATORI KPI (CROSS-DEVICE: DESKTOP, TABLET, MOBILE)
      ========================================================================== */
-  const animateNumber = (element) => {
+  const animateValue = (element) => {
+    if (element.dataset.animated === "true") return;
     const rawText = element.textContent.trim();
-    if (rawText === "???" || element.dataset.animated === "true") return;
+    if (rawText === "???" || rawText === "") return;
 
-    // Pattern A: Formato Razione "X su Y" (es. "9 su 10") -> Incrementa 1 su 10, 2 su 10...
+    // Pattern A: Frazione progressiva "X su Y" (es. "9 su 10" -> 1 su 10, 2 su 10, ... 9 su 10)
     const ratioMatch = rawText.match(/^(\d+)\s+(su)\s+(\d+)$/i);
     if (ratioMatch) {
       element.dataset.animated = "true";
@@ -266,17 +290,44 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Pattern B: Formati Numerici Standard (+, %, ×, separatore migliaia)
-    const isPlus = rawText.startsWith("+");
-    const isTimes = rawText.startsWith("×");
-    const isPercentage = rawText.endsWith("%");
+    // Pattern B: Moltiplicatore "×3" (-> ×1, ×2, ×3)
+    const multMatch = rawText.match(/^×\s*(\d+)$/);
+    if (multMatch) {
+      element.dataset.animated = "true";
+      const targetVal = parseInt(multMatch[1], 10);
+      const duration = 1000;
+      let startTime = null;
 
-    let cleanNum = rawText.replace(/[+×%]/g, "").trim();
-    if (/^\d{1,3}\.\d{3}$/.test(cleanNum)) {
-      cleanNum = cleanNum.replace(".", "");
+      const stepMult = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.max(1, Math.floor(ease * targetVal));
+
+        element.textContent = `×${current}`;
+
+        if (progress < 1) {
+          window.requestAnimationFrame(stepMult);
+        } else {
+          element.textContent = rawText;
+        }
+      };
+
+      window.requestAnimationFrame(stepMult);
+      return;
     }
 
-    const targetValue = parseFloat(cleanNum);
+    // Pattern C: Numeri Standard (+, %, separatori di migliaia come +1.600 o 84)
+    const isPlus = rawText.startsWith("+");
+    const isPercentage = rawText.endsWith("%");
+
+    let numStr = rawText.replace(/^[+×]/, "").replace(/%$/, "").trim();
+    const isThousandDot = /^\d{1,3}\.\d{3}$/.test(numStr);
+    if (isThousandDot) {
+      numStr = numStr.replace(".", "");
+    }
+
+    const targetValue = parseFloat(numStr);
     if (isNaN(targetValue)) return;
 
     element.dataset.animated = "true";
@@ -290,11 +341,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const current = Math.floor(ease * targetValue);
 
       let formatted = current.toString();
-      if (targetValue >= 1000) {
-        formatted = current.toLocaleString("it-IT");
+      if (isThousandDot && current >= 1000) {
+        formatted = Math.floor(current / 1000) + "." + (current % 1000).toString().padStart(3, "0");
       }
 
-      element.textContent = `${isPlus ? "+" : ""}${isTimes ? "×" : ""}${formatted}${isPercentage ? "%" : ""}`;
+      element.textContent = `${isPlus ? "+" : ""}${formatted}${isPercentage ? "%" : ""}`;
 
       if (progress < 1) {
         window.requestAnimationFrame(stepNum);
@@ -306,8 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.requestAnimationFrame(stepNum);
   };
 
-  // Inizializzazione sicura per Desktop, Tablet e Mobile:
-  // Triggera i numeri già nel viewport e osserva gli altri con soglia bassa
+  // Osservatore d'intersezione per Desktop, Tablet e Mobile
   const statNumbers = document.querySelectorAll(".metric-number, .num-big");
 
   if ("IntersectionObserver" in window) {
@@ -315,7 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            animateNumber(entry.target);
+            animateValue(entry.target);
             observer.unobserve(entry.target);
           }
         });
@@ -329,16 +379,15 @@ document.addEventListener("DOMContentLoaded", () => {
     statNumbers.forEach((el) => {
       if (el.textContent.trim() !== "???") {
         const rect = el.getBoundingClientRect();
-        // Se già visibile a schermo all'apertura pagina (es. desktop grande), anima subito
+        // Se l'elemento è già visibile a schermo all'apertura, avvia subito il conteggio
         if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          animateNumber(el);
+          animateValue(el);
         } else {
           kpiObserver.observe(el);
         }
       }
     });
   } else {
-    // Fallback per browser senza IntersectionObserver
-    statNumbers.forEach((el) => animateNumber(el));
+    statNumbers.forEach((el) => animateValue(el));
   }
 });
