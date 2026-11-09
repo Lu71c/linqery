@@ -1,7 +1,14 @@
 /* ==========================================================================
    LINQERY™ — ENGINE CONTROLLER (js/app.js)
    Target: Vanilla ES6+, Zero dipendenze, < 4KB, Reattività 60-120 FPS
-   Gestione: Tab Casi Studio, FAQ Esclusive, Invio Asincrono Form, Smooth Nav
+   Gestione: 
+   1. Header Sticky & State Scroll
+   2. Navigazione Smooth Scroll & Chiusura Drawer
+   3. Menu Mobile Hamburger & Drawer Off-Canvas
+   4. Vetrina Tab Casi Studio con Trigger Contatori
+   5. FAQ Accordion Esclusivo (<details>)
+   6. Modulo Candidatura Asincrono
+   7. KPI Number Ticker (Supporto Percentuali, Moltiplicatori e "X su Y")
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
      1. GESTIONE STATO HEADER ALLO SCROLL
      ========================================================================== */
   const header = document.querySelector(".header-fixed");
-  
+
   const handleHeaderScroll = () => {
     if (!header) return;
-    if (window.scrollY > 40) {
+    if (window.scrollY > 30) {
       header.classList.add("header-scrolled");
     } else {
       header.classList.remove("header-scrolled");
@@ -25,7 +32,48 @@ document.addEventListener("DOMContentLoaded", () => {
   handleHeaderScroll();
 
   /* ==========================================================================
-     2. NAVIGAZIONE INTERNA & SCROLL OFFSET
+     2. GESTIONE MENU MOBILE HAMBURGER & DRAWER OFF-CANVAS
+     ========================================================================== */
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const closeMobileNavBtn = document.getElementById("closeMobileNavBtn");
+  const mobileNavDrawer = document.getElementById("mobileNavDrawer");
+  const mobileNavBackdrop = document.getElementById("mobileNavBackdrop");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-links a");
+
+  const toggleMobileMenu = (forceState) => {
+    if (!mobileNavDrawer) return;
+    const shouldOpen =
+      forceState !== undefined
+        ? forceState
+        : !mobileNavDrawer.classList.contains("open");
+
+    mobileNavDrawer.classList.toggle("open", shouldOpen);
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.classList.toggle("open", shouldOpen);
+      mobileNavBackdrop.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
+    }
+    if (mobileMenuBtn) {
+      mobileMenuBtn.classList.toggle("active", shouldOpen);
+      mobileMenuBtn.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+    }
+    document.body.classList.toggle("no-scroll", shouldOpen);
+  };
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", () => toggleMobileMenu());
+  }
+  if (closeMobileNavBtn) {
+    closeMobileNavBtn.addEventListener("click", () => toggleMobileMenu(false));
+  }
+  if (mobileNavBackdrop) {
+    mobileNavBackdrop.addEventListener("click", () => toggleMobileMenu(false));
+  }
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => toggleMobileMenu(false));
+  });
+
+  /* ==========================================================================
+     3. NAVIGAZIONE INTERNA & SMOOTH SCROLL CON OFFSET
      ========================================================================== */
   const internalNavLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -37,16 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
+        toggleMobileMenu(false); // Chiude il drawer mobile se aperto
+
         const headerHeight = header ? header.offsetHeight : 72;
         const targetPosition =
-          targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 16;
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight -
+          12;
 
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth"
         });
 
-        // Aggiorna la cronologia dell'URL senza refresh
         if (history.pushState) {
           history.pushState(null, null, targetId);
         }
@@ -55,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ==========================================================================
-     3. VETRINA TAB CASI STUDIO (Switch Immediato Zero-Lag)
+     4. VETRINA TAB CASI STUDIO (Switch Immediato & Riattivazione Contatori)
      ========================================================================== */
   const tabButtons = document.querySelectorAll(".cases-tab-interface .tab-btn");
   const tabPanels = document.querySelectorAll(".cases-tab-interface .case-panel");
@@ -65,27 +117,31 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetPanelId = btn.getAttribute("data-tab-target");
       if (!targetPanelId) return;
 
-      // Rimozione classi attive
       tabButtons.forEach((b) => b.classList.remove("active"));
       tabPanels.forEach((p) => p.classList.remove("active"));
 
-      // Attivazione elemento selezionato
       btn.classList.add("active");
       const targetPanel = document.getElementById(targetPanelId);
       if (targetPanel) {
         targetPanel.classList.add("active");
+
+        // Riattiva l'animazione contatori per i numeri all'interno del pannello aperto
+        targetPanel.querySelectorAll(".num-big").forEach((numEl) => {
+          if (numEl.dataset.animated !== "true") {
+            animateNumber(numEl);
+          }
+        });
       }
     });
   });
 
   /* ==========================================================================
-     4. FAQ ACCORDION ESCLUSIVO (<details> Nativo con Chiusura Automatica)
+     5. FAQ ACCORDION ESCLUSIVO (<details> con Chiusura Fratelli)
      ========================================================================== */
   const faqItems = document.querySelectorAll(".faq-stack .faq-item");
 
   faqItems.forEach((item) => {
     item.addEventListener("toggle", () => {
-      // Quando un blocco viene aperto, chiude gli altri per mantenere la pagina ordinata
       if (item.open) {
         faqItems.forEach((other) => {
           if (other !== item && other.open) {
@@ -97,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ==========================================================================
-     5. MODULO AUDIT CANDIDATURA (Invio Asincrono & Generazione Ricevuta)
+     6. MODULO AUDIT CANDIDATURA (Invio Asincrono & Ricevuta Live)
      ========================================================================== */
   const auditForm = document.getElementById("auditForm");
   const formFeedback = document.getElementById("formFeedback");
@@ -107,14 +163,12 @@ document.addEventListener("DOMContentLoaded", () => {
     auditForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      // Estrazione campi
       const azienda = document.getElementById("f_azienda")?.value.trim() || "";
       const sito = document.getElementById("f_sito")?.value.trim() || "";
       const nome = document.getElementById("f_nome")?.value.trim() || "";
       const telefono = document.getElementById("f_telefono")?.value.trim() || "";
       const email = document.getElementById("f_email")?.value.trim() || "";
 
-      // Validazione base
       if (!azienda || !sito || !nome || !telefono || !email) {
         if (formFeedback) {
           formFeedback.className = "form-feedback error";
@@ -127,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Stato di caricamento visivo del pulsante
       const originalBtnHtml = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
@@ -139,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </span>
       `;
 
-      // Iniezione animazione di caricamento CSS se non presente
       if (!document.getElementById("spinAnimation")) {
         const style = document.createElement("style");
         style.id = "spinAnimation";
@@ -147,16 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.head.appendChild(style);
       }
 
-      // Simulazione dispatch sicuro verso webhook backend / Telegram bot
       setTimeout(() => {
         const auditId = "LQ-" + Math.floor(10000 + Math.random() * 90000);
-        const dataOggi = new Date().toLocaleDateString("it-IT", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric"
-        });
 
-        // Risposta a schermo senza ricaricare la pagina
         if (formFeedback) {
           formFeedback.className = "form-feedback success";
           formFeedback.style.display = "block";
@@ -171,7 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         }
 
-        // Reset del form e ripristino pulsante
         auditForm.reset();
         submitBtn.disabled = false;
         submitBtn.innerHTML = `
@@ -187,48 +231,85 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================================================================
-     6. KPI NUMBER TICKER ON SCROLL (Animazione Fluida Contatori)
+     7. MOTORE DI ANIMAZIONE CONTATORI KPI (Desktop, Tablet e Mobile)
      ========================================================================== */
-  const statNumbers = document.querySelectorAll(".metric-number, .num-big");
-
   const animateNumber = (element) => {
     const rawText = element.textContent.trim();
+    if (rawText === "???" || element.dataset.animated === "true") return;
+
+    // Pattern A: Formato Razione "X su Y" (es. "9 su 10") -> Incrementa 1 su 10, 2 su 10...
+    const ratioMatch = rawText.match(/^(\d+)\s+(su)\s+(\d+)$/i);
+    if (ratioMatch) {
+      element.dataset.animated = "true";
+      const targetVal = parseInt(ratioMatch[1], 10);
+      const word = ratioMatch[2];
+      const totalVal = ratioMatch[3];
+      const duration = 1200;
+      let startTime = null;
+
+      const stepRatio = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(ease * targetVal);
+
+        element.textContent = `${Math.max(1, current)} ${word} ${totalVal}`;
+
+        if (progress < 1) {
+          window.requestAnimationFrame(stepRatio);
+        } else {
+          element.textContent = rawText;
+        }
+      };
+
+      window.requestAnimationFrame(stepRatio);
+      return;
+    }
+
+    // Pattern B: Formati Numerici Standard (+, %, ×, separatore migliaia)
     const isPlus = rawText.startsWith("+");
     const isTimes = rawText.startsWith("×");
     const isPercentage = rawText.endsWith("%");
-    
-    // Estrae solo la componente numerica
-    const numericValue = parseFloat(rawText.replace(/[^0-9.]/g, ""));
-    if (isNaN(numericValue)) return;
 
+    let cleanNum = rawText.replace(/[+×%]/g, "").trim();
+    if (/^\d{1,3}\.\d{3}$/.test(cleanNum)) {
+      cleanNum = cleanNum.replace(".", "");
+    }
+
+    const targetValue = parseFloat(cleanNum);
+    if (isNaN(targetValue)) return;
+
+    element.dataset.animated = "true";
+    const duration = 1200;
     let startTime = null;
-    const duration = 1200; // ms
 
-    const step = (timestamp) => {
+    const stepNum = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      // Easing out cubic
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(easeProgress * numericValue);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(ease * targetValue);
 
       let formatted = current.toString();
-      if (current >= 1000) {
-        formatted = (current / 1000).toFixed(3).replace(".", ".");
+      if (targetValue >= 1000) {
+        formatted = current.toLocaleString("it-IT");
       }
 
       element.textContent = `${isPlus ? "+" : ""}${isTimes ? "×" : ""}${formatted}${isPercentage ? "%" : ""}`;
 
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        window.requestAnimationFrame(stepNum);
       } else {
-        element.textContent = rawText; // Ripristina stringa originale esatta
+        element.textContent = rawText;
       }
     };
 
-    window.requestAnimationFrame(step);
+    window.requestAnimationFrame(stepNum);
   };
 
-  // Trigger tramite IntersectionObserver per azionare i numeri solo quando visibili
+  // Inizializzazione sicura per Desktop, Tablet e Mobile:
+  // Triggera i numeri già nel viewport e osserva gli altri con soglia bassa
+  const statNumbers = document.querySelectorAll(".metric-number, .num-big");
+
   if ("IntersectionObserver" in window) {
     const kpiObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -239,13 +320,25 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
       },
-      { threshold: 0.3 }
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -20px 0px"
+      }
     );
 
     statNumbers.forEach((el) => {
       if (el.textContent.trim() !== "???") {
-        kpiObserver.observe(el);
+        const rect = el.getBoundingClientRect();
+        // Se già visibile a schermo all'apertura pagina (es. desktop grande), anima subito
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          animateNumber(el);
+        } else {
+          kpiObserver.observe(el);
+        }
       }
     });
+  } else {
+    // Fallback per browser senza IntersectionObserver
+    statNumbers.forEach((el) => animateNumber(el));
   }
 });
