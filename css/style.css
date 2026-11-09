@@ -1,8 +1,8 @@
 /* ==========================================================================
    LINQERY™ — EXECUTIVE STYLESHEET (css/style.css)
    Target: Zero frameworks, Pure Performance (<50ms), High Visual Impact B2B
-   Palette: Deep Navy Slate, Satin Titanium, Warm Ivory, Electric Orange, Azure
-   Responsive: Mobile, Tablet (Portrait & Landscape), Desktop, Ultra-wide
+   Palette: Deep Navy Slate, Dark Titanium Satin, Electric Orange, Azure Slate
+   Responsive: Mobile (Portrait & Landscape), Tablet, Desktop, Ultra-wide
    ========================================================================== */
 
 :root {
@@ -12,12 +12,10 @@
   --bg-card-hover: rgba(18, 33, 66, 0.85);
   --bg-satin: rgba(241, 245, 249, 0.04);
   
-  /* Sezioni e Card in Bianco Panna / Avorio Caldo (Report McKinsey Style) */
-  --bg-ivory: #f8fafc;
-  --bg-ivory-surface: #ffffff;
-  --text-dark: #0f172a;
-  --text-dark-muted: #64748b;
-  --border-ivory: #e2e8f0;
+  /* Superficie Titanio Notte Satinato per Casi Studio (Zero Flashbang) */
+  --bg-titanium: #0c1830;
+  --bg-titanium-inner: #070e1e;
+  --border-titanium: rgba(64, 117, 170, 0.28);
   
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
@@ -29,9 +27,9 @@
   --orange-glow-intense: rgba(239, 133, 46, 0.6);
   --emerald-accent: #10b981;
   
-  /* Azzurro Istituzionale Carta da Zucchero (Sostituisce il Ciano Elettrico) */
+  /* Azzurro Istituzionale Carta da Zucchero */
   --azure-accent: #4075aa;
-  --azure-light: #5b8ec2;
+  --azure-light: #6497ce;
   
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-card: rgba(255, 255, 255, 0.12);
@@ -45,13 +43,12 @@
   --radius-lg: 18px;
   --radius-full: 9999px;
   
-  --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
-  --shadow-ivory: 0 20px 50px -10px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.55);
   --shadow-glow: 0 0 25px var(--orange-glow);
 }
 
 /* ==========================================================================
-   RESET & REGOLE DI BASE
+   RESET & SFONDO DINAMICO "EFFETTO WOW" (Network Grid & Ambient Glows)
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -75,6 +72,16 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  /* Trama tecnica a rete di connessione e sfumature ambientali a zero peso */
+  background-color: var(--bg-navy-deep);
+  background-image:
+    radial-gradient(at 0% 0%, rgba(64, 117, 170, 0.14) 0px, transparent 50%),
+    radial-gradient(at 100% 25%, rgba(239, 133, 46, 0.08) 0px, transparent 40%),
+    radial-gradient(at 50% 65%, rgba(64, 117, 170, 0.11) 0px, transparent 55%),
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 54px 54px, 54px 54px;
+  background-attachment: fixed;
 }
 
 body.no-scroll {
@@ -157,7 +164,6 @@ ul {
 .text-slate-500 { color: #64748b !important; }
 .text-emerald { color: var(--emerald-accent) !important; }
 .text-azure { color: var(--azure-light) !important; }
-.text-primary-dark { color: var(--text-dark) !important; }
 
 .text-gradient-orange {
   background: linear-gradient(135deg, #ffa451 0%, #ef852e 60%, #d96810 100%);
@@ -289,7 +295,7 @@ ul {
 }
 
 /* ==========================================================================
-   00. HEADER & NAVIGAZIONE (Anti-Collisione & Anti-Deformazione)
+   00. HEADER & NAVIGAZIONE (Blindata per Mobile & Landscape)
    ========================================================================== */
 .header-fixed {
   position: fixed;
@@ -298,7 +304,7 @@ ul {
   width: 100%;
   height: 72px;
   z-index: 9999;
-  background: rgba(6, 11, 23, 0.85);
+  background: rgba(6, 11, 23, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
@@ -308,8 +314,8 @@ ul {
 }
 
 .header-fixed.header-scrolled {
-  background: rgba(6, 11, 23, 0.95);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  background: rgba(6, 11, 23, 0.96);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .header-inner {
@@ -355,7 +361,7 @@ ul {
   gap: 1rem;
 }
 
-/* Slot Pill Blindata: Non va MAI a capo su 3 righe */
+/* Slot Pill */
 .slot-pill {
   display: flex;
   align-items: center;
@@ -390,7 +396,7 @@ ul {
   font-family: var(--font-code);
 }
 
-/* Hamburger Trigger */
+/* Hamburger Trigger (Bloccato da overflow) */
 .hamburger-btn {
   display: none;
   flex-direction: column;
@@ -399,12 +405,14 @@ ul {
   gap: 5px;
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-sm);
   cursor: pointer;
   padding: 8px;
-  z-index: 10001;
+  z-index: 10005;
+  pointer-events: auto;
+  flex-shrink: 0;
   transition: all 0.25s ease;
 }
 
@@ -428,7 +436,7 @@ ul {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Drawer Mobile */
+/* Drawer Mobile Off-Canvas (Scritte Grandi e Ariose) */
 .mobile-nav-drawer {
   position: fixed;
   top: 0;
@@ -437,13 +445,14 @@ ul {
   height: 100dvh;
   background: #060b17;
   border-left: 1px solid var(--border-card);
-  z-index: 10002;
+  z-index: 10006;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.8rem;
+  padding: 2.2rem 1.8rem;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8);
+  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.85);
+  pointer-events: auto;
 }
 
 .mobile-nav-drawer.open {
@@ -454,7 +463,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.2rem;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -463,8 +472,8 @@ ul {
   border: none;
   color: var(--text-muted);
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -477,31 +486,33 @@ ul {
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding: 2rem 0;
+  gap: 1.7rem;
+  padding: 2.5rem 0;
 }
 
 .mobile-nav-item {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 700;
   color: var(--text-primary);
+  display: block;
 }
 
 .mobile-nav-item.mobile-highlight {
   color: var(--orange-accent);
-  padding-top: 0.5rem;
+  padding-top: 0.8rem;
+  font-size: 1.25rem;
 }
 
 .mobile-nav-footer {
   border-top: 1px solid var(--border-subtle);
-  padding-top: 1.2rem;
+  padding-top: 1.5rem;
 }
 
 .mobile-slot-badge {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
+  gap: 0.6rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
@@ -510,7 +521,7 @@ ul {
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(4px);
-  z-index: 10000;
+  z-index: 10001;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -920,7 +931,7 @@ ul {
 }
 
 /* ==========================================================================
-   05. SEZIONE 03 — CHI SIAMO & EXECUTIVE FOUNDER (SPAZIO FOTO POTENZIATO)
+   05. SEZIONE 03 — CHI SIAMO & EXECUTIVE FOUNDER (SPAZIO FOTO INGRANDITO)
    ========================================================================== */
 .section-chi-siamo {
   background: var(--bg-navy-surface);
@@ -946,21 +957,31 @@ ul {
 .founder-media-box {
   display: flex;
   align-items: center;
-  gap: 1.8rem;
+  gap: 2rem;
   margin-bottom: 1.8rem;
 }
 
-/* Cornice fotografica ingrandita, autorevole e pronta per il portrait */
+/* Spazio foto ingrandito: 160x160px con cornice executive arancio */
 .founder-avatar-frame {
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
+  min-width: 160px;
   border-radius: var(--radius-lg);
   border: 2px solid var(--orange-accent);
   padding: 4px;
   background: var(--bg-navy-surface);
   flex-shrink: 0;
-  box-shadow: 0 10px 30px rgba(239, 133, 46, 0.25);
+  box-shadow: 0 12px 35px rgba(239, 133, 46, 0.28);
   overflow: hidden;
+  position: relative;
+}
+
+.founder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius-lg) - 4px);
+  display: block;
 }
 
 .avatar-placeholder {
@@ -974,14 +995,8 @@ ul {
   justify-content: center;
 }
 
-.avatar-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .avatar-initials {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 800;
   color: var(--orange-accent);
   font-family: var(--font-code);
@@ -1079,7 +1094,7 @@ ul {
 }
 
 /* ==========================================================================
-   07. SEZIONE 05 — COSTO DELL'ATTESA (METRICHE ANTI-SPEZZAMENTO)
+   07. SEZIONE 05 — COSTO DELL'ATTESA (METRICA "9 SU 10" ANTI-SPEZZAMENTO)
    ========================================================================== */
 .section-metrics-urgency {
   background: var(--bg-navy-surface);
@@ -1110,12 +1125,13 @@ ul {
 
 /* "9 su 10", "87%", "95%" restano SEMPRE su un'unica riga */
 .metric-number {
-  font-size: clamp(2.2rem, 3.2vw, 2.8rem);
+  font-size: clamp(1.85rem, 2.8vw, 2.6rem);
   font-weight: 800;
   font-family: var(--font-code);
   line-height: 1;
-  white-space: nowrap;
+  white-space: nowrap !important;
   flex-shrink: 0;
+  min-width: fit-content;
 }
 
 .metric-txt {
@@ -1131,7 +1147,7 @@ ul {
 }
 
 /* ==========================================================================
-   08. SEZIONE 06 — IL PROTOCOLLO FUNNELINQ™ (SOTTOTITOLI CALIBRATI)
+   08. SEZIONE 06 — IL PROTOCOLLO FUNNELINQ™ (SOTTOTITOLI SU RIGA SINGOLA)
    ========================================================================== */
 .section-funnelinq {
   background: var(--bg-navy-deep);
@@ -1195,9 +1211,9 @@ ul {
   margin-bottom: 0.4rem;
 }
 
-/* Sottotitolo tra virgolette ridotto per entrare su riga singola senza parole orfane */
+/* Sottotitoli tra virgolette su singola riga senza parole orfane */
 .level-quote {
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   color: var(--azure-light);
   font-style: italic;
   margin-bottom: 0.8rem;
@@ -1297,7 +1313,7 @@ ul {
 }
 
 /* ==========================================================================
-   10. SEZIONE 08 — CASI STUDIO (CONTRASTO AVORIO / BIANCO PANNA MCKINSEY)
+   10. SEZIONE 08 — CASI STUDIO (TITANIO NOTTE SATINATO & NUMERI ARANCIONI)
    ========================================================================== */
 .section-casi-studio {
   background: var(--bg-navy-deep);
@@ -1320,20 +1336,20 @@ ul {
   color: #cbd5e1;
 }
 
-/* Card in Bianco Panna Satinato ad altissimo valore esecutivo */
+/* Card Casi Studio: addio bianco, sfondo Titanio Notte armonico */
 .cases-tab-interface {
-  background: var(--bg-ivory);
-  border: 1px solid var(--border-ivory);
+  background: var(--bg-titanium);
+  border: 1px solid var(--border-titanium);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
-  box-shadow: var(--shadow-ivory);
-  color: var(--text-dark);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
 }
 
 .tab-controls {
   display: flex;
   gap: 0.75rem;
-  border-bottom: 1px solid var(--border-ivory);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: 1.5rem;
   margin-bottom: 2.5rem;
   overflow-x: auto;
@@ -1347,7 +1363,7 @@ ul {
 .tab-btn {
   background: transparent;
   border: 1px solid transparent;
-  color: var(--text-dark-muted);
+  color: var(--text-secondary);
   padding: 0.6rem 1.2rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-main);
@@ -1359,8 +1375,8 @@ ul {
 }
 
 .tab-btn:hover {
-  color: var(--text-dark);
-  background: rgba(15, 23, 42, 0.05);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .tab-btn.active {
@@ -1370,7 +1386,7 @@ ul {
 }
 
 .tab-btn.highlight-tab {
-  border: 1px dashed rgba(15, 23, 42, 0.25);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
 .case-panel {
@@ -1409,19 +1425,19 @@ ul {
 
 .case-industry {
   font-size: 1.45rem;
-  color: var(--text-dark);
+  color: var(--text-white);
   margin-bottom: 0.35rem;
 }
 
 .case-duration {
   font-size: 0.82rem;
-  color: var(--text-dark-muted);
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
 .case-premise {
   font-size: 0.88rem;
-  color: #334155;
+  color: #cbd5e1;
   line-height: 1.5;
 }
 
@@ -1432,35 +1448,37 @@ ul {
 }
 
 .num-block {
-  background: var(--bg-ivory-surface);
-  border: 1px solid var(--border-ivory);
+  background: var(--bg-titanium-inner);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   padding: 1.2rem;
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
-.num-big {
+/* Entrambi i numeri dei casi studio sono forzati in arancione firma */
+.case-numbers .num-big {
+  color: var(--orange-accent) !important;
   font-size: 2.6rem;
   font-weight: 800;
   font-family: var(--font-code);
   display: block;
   line-height: 1;
   margin-bottom: 0.25rem;
+  text-shadow: 0 0 20px rgba(239, 133, 46, 0.2);
 }
 
 .num-label {
   font-size: 0.8rem;
-  color: var(--text-dark-muted);
+  color: var(--text-muted);
 }
 
 .case-quote-box {
-  background: var(--bg-ivory-surface);
+  background: var(--bg-titanium-inner);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-left: 3px solid var(--orange-accent);
-  border: 1px solid var(--border-ivory);
-  border-left-width: 3px;
   padding: 1.4rem;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .quote-icon {
@@ -1472,7 +1490,7 @@ ul {
 
 .quote-text {
   font-size: 0.88rem;
-  color: #1e293b;
+  color: #cbd5e1;
   font-style: italic;
   line-height: 1.6;
 }
@@ -1482,7 +1500,7 @@ ul {
 }
 
 .case-action-card {
-  background: var(--bg-navy-deep);
+  background: rgba(6, 11, 23, 0.85);
   border: 1px solid rgba(239, 133, 46, 0.3);
   padding: 1.8rem;
   border-radius: var(--radius-md);
@@ -1929,7 +1947,7 @@ ul {
    RESPONSIVE DESIGN (TABLET PORTRAIT & LANDSCAPE, MOBILE)
    ========================================================================== */
 
-/* Tablet Portrait Specifico (768px - 1024px) */
+/* Tablet Portrait (768px - 1024px) */
 @media (max-width: 1024px) and (min-width: 641px) and (orientation: portrait) {
   .hero-section {
     padding-top: 3.5rem;
@@ -1987,7 +2005,7 @@ ul {
   }
 }
 
-/* Tablet Verticale (<= 880px) */
+/* Breakpoint Tablet / Schermi Ristretti (<= 880px) */
 @media (max-width: 880px) {
   .grid-two-col {
     grid-template-columns: 1fr;
@@ -2023,7 +2041,6 @@ ul {
     grid-column: span 2;
   }
 
-  /* Attiva Hamburger su schermi fino a 880px */
   .nav-desktop {
     display: none !important;
   }
@@ -2033,8 +2050,8 @@ ul {
   }
 }
 
-/* Smartphone Verticale (<= 640px) */
-@media (max-width: 640px) {
+/* Smartphone Verticale (Portrait <= 767px) - Blindato */
+@media (max-width: 767px) and (orientation: portrait) {
   .section-pad {
     padding-top: 4.5rem;
     padding-bottom: 4.5rem;
@@ -2044,20 +2061,39 @@ ul {
     height: 64px;
   }
 
+  .header-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  .header-cta-btn {
+    padding: 0.42rem 0.8rem;
+    font-size: 0.78rem;
+  }
+
+  .nav-desktop {
+    display: none !important;
+  }
+
+  /* Eliminata la pillola su smartphone verticale per non togliere spazio vitale all'hamburger */
+  .slot-pill {
+    display: none !important;
+  }
+
+  /* Hamburger saldamente visibile e allineato senza overflow a destra */
+  .hamburger-btn {
+    display: flex !important;
+    margin-left: 0.25rem;
+  }
+
   .hero-section {
     margin-top: 64px;
     padding-top: 2.5rem;
     padding-bottom: 3.5rem;
-  }
-
-  /* Slot pill compatta: evita rotture su tre righe */
-  .slot-pill {
-    padding: 0.25rem 0.55rem;
-    font-size: 0.72rem;
-  }
-
-  .slot-pill .slot-label {
-    display: none; /* Mostra unicamente: ● 2/5 */
   }
 
   .hero-title {
@@ -2072,6 +2108,16 @@ ul {
 
   .hero-cta-row .btn {
     width: 100%;
+  }
+
+  .founder-media-box {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+  }
+
+  .founder-avatar-frame {
+    margin: 0 auto;
   }
 
   .pipeline-flow-container {
@@ -2131,10 +2177,9 @@ ul {
 /* Smartphone Orizzontale / Landscape a Bassa Altezza (<= 550px) */
 @media (orientation: landscape) and (max-height: 550px) {
   .header-fixed {
-    height: 54px;
+    height: 56px;
   }
 
-  /* Nasconde la navbar standard ed espone hamburger per evitare sovrapposizioni */
   .nav-desktop {
     display: none !important;
   }
@@ -2143,18 +2188,20 @@ ul {
     display: flex !important;
   }
 
-  .header-cta-btn {
-    padding: 0.35rem 0.75rem;
+  /* In orizzontale la pillola slot resta visibile per esteso: spazio abbondante */
+  .slot-pill {
+    display: flex !important;
+    padding: 0.3rem 0.75rem;
     font-size: 0.76rem;
   }
 
-  .slot-pill {
-    padding: 0.25rem 0.55rem;
-    font-size: 0.72rem;
+  .slot-pill .slot-label {
+    display: inline !important;
   }
 
-  .slot-pill .slot-label {
-    display: none;
+  .header-cta-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.76rem;
   }
 
   .section-pad {
@@ -2164,7 +2211,7 @@ ul {
 
   .hero-section {
     min-height: auto;
-    margin-top: 54px;
+    margin-top: 56px;
     padding-top: 2rem;
     padding-bottom: 2.5rem;
   }
