@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINQERY™ — LinkedIn B2B Acquisition Engine</title>
+  <meta name="description" content="Trasformiamo LinkedIn nel canale commerciale primario per aziende B2B. Metodo proprietario FUNNELINQ™: appuntamenti qualificati e contratti chiusi.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-navy-deep text-slate-100 antialiased selection:bg-orange-accent selection:text-white">
+
+  <!-- ==========================================================================
+       00. HEADER & NAVIGAZIONE DI SISTEMA
+       ========================================================================== -->
+  <header class="header-fixed" data-section-id="sec_header">
+    <div class="header-inner container-fluid">
+      <a href="#hero" class="brand-link" data-block-id="brand_logo">
+        <span class="brand-text">LINQERY<span class="brand-mark">™</span></span>
+      </a>
+
+      <nav class="nav-desktop" data-block-id="nav_links">
+        <a href="#specchio" class="nav-item">Perché noi</a>
+        <a href="#metodo" class="nav-item">Metodo FUNNELINQ™</a>
+        <a href="#casi-studio" class="nav-item">Casi Studio</a>
+        <a href="#faq" class="nav-item">Domande</a>
+      </nav>
+
+      <div class="header-actions" data-block-id="header_cta_group">
+        <div class="slot-pill" data-block-id="slot_counter_header">
+          <span class="pulse-dot"></span>
+          <span class="slot-label">Slot mese:</span>
+          <span class="slot-number" data-field="slot_disponibili_header">2 / 5</span>
+        </div>
+        <a href="#candidati" class="btn btn-sm btn-primary">
+          <span>Candidati ora</span>
+          <svg class="icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         01. HERO SECTION
+         ========================================================================== -->
+    <section id="hero" class="hero-section" data-section-id="sec_hero">
+      <div class="hero-glow-bg"></div>
+      <div class="container hero-grid">
+        <div class="hero-content" data-block-id="hero_copy">
+          <div class="badge-tag" data-field="hero_preheader">
+            <span class="badge-dot"></span>
+            LINQERY™ · LinkedIn B2B Agency
+          </div>
+          
+          <h1 class="hero-title" data-field="hero_title">
+            I primi in Italia.<br>
+            Trasformiamo LinkedIn<br>
+            <span class="text-gradient-orange">in clienti e fatturato.</span>
+          </h1>
+
+          <p class="hero-guarantee" data-field="hero_guarantee">
+            E i primi appuntamenti arrivano già dopo la <strong class="text-orange">prima settimana. Garantito.</strong>
+          </p>
+
+          <p class="hero-desc" data-field="hero_description">
+            Specializzati nel trasformare il profilo e la rete LinkedIn delle aziende in un canale commerciale che genera opportunità di vendita continuative. È l’unica cosa che facciamo, ogni giorno.
+          </p>
+
+          <div class="hero-cta-row" data-block-id="hero_cta">
+            <a href="#candidati" class="btn btn-lg btn-primary">
+              <span data-field="hero_btn_main">Prenota l'audit gratuito</span>
+              <svg class="icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#metodo" class="btn btn-lg btn-outline" data-field="hero_btn_sec">
+              Scopri il metodo
+            </a>
+          </div>
+
+          <div class="hero-trust-row" data-block-id="hero_micro_trust">
+            <span class="trust-item"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 2h-11A1.5 1.5 0 001 3.5v9A1.5 1.5 0 002.5 14h11a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0013.5 2zm-7 9.5l-3.5-3.5 1.06-1.06 2.44 2.44 5.44-5.44 1.06 1.06-6.5 6.5z"/></svg> Solo B2B</span>
+            <span class="trust-item"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 2h-11A1.5 1.5 0 001 3.5v9A1.5 1.5 0 002.5 14h11a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0013.5 2zm-7 9.5l-3.5-3.5 1.06-1.06 2.44 2.44 5.44-5.44 1.06 1.06-6.5 6.5z"/></svg> Risposta in 48h</span>
+            <span class="trust-item"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 2h-11A1.5 1.5 0 001 3.5v9A1.5 1.5 0 002.5 14h11a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0013.5 2zm-7 9.5l-3.5-3.5 1.06-1.06 2.44 2.44 5.44-5.44 1.06 1.06-6.5 6.5z"/></svg> Zero costi di hosting</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" data-block-id="hero_dashboard_ui">
+          <div class="css-terminal-card">
+            <div class="terminal-bar">
+              <span class="win-circle close"></span>
+              <span class="win-circle min"></span>
+              <span class="win-circle exp"></span>
+              <span class="terminal-title">FUNNELINQ™ // Acquisition Core v4.2</span>
+            </div>
+            <div class="terminal-body">
+              <div class="lead-event-card">
+                <div class="lead-badge">NUOVO CONTATTO QUALIFICATO</div>
+                <div class="lead-info">
+                  <strong>Direttore Acquisti</strong> · Gruppo Meccanico Industriale
+                  <span>«Ho letto la vostra analisi sul posizionamento B2B. Abbiamo 3 linee da rinnovare: fissiamo un audit giovedì?»</span>
+                </div>
+                <div class="lead-meta">
+                  <span class="status-live">Incontro fissato</span>
+                  <span class="deal-est">Trattativa stimata: € 85.000</span>
+                </div>
+              </div>
+              <div class="stats-ticker-grid">
+                <div class="stat-pill">
+                  <span class="stat-lbl">Tempo prima conversazione</span>
+                  <span class="stat-val text-orange">&lt; 7 giorni</span>
+                </div>
+                <div class="stat-pill">
+                  <span class="stat-lbl">Tasso riscontro Decisori</span>
+                  <span class="stat-val text-emerald">41.8%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         02. SOCIAL PROOF MARQUEE
+         ========================================================================== -->
+    <div class="marquee-strip" data-section-id="sec_marquee">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span class="marquee-item"><span class="stars">★★★★★</span> Specializzazione Verticale B2B</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Gli Unici in Italia</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Metodologia Proprietaria</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Clienti Reali</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Aziende Soddisfatte</span>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span class="marquee-item"><span class="stars">★★★★★</span> Specializzazione Verticale B2B</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Gli Unici in Italia</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Metodologia Proprietaria</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Clienti Reali</span>
+          <span class="marquee-item"><span class="stars">★★★★★</span> Aziende Soddisfatte</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         03. SEZIONE 01 — LO SPECCHIO
+         ========================================================================== -->
+    <section id="specchio" class="section-pad section-specchio" data-section-id="sec_specchio">
+      <div class="container grid-two-col">
+        <div class="col-head" data-block-id="specchio_heading">
+          <span class="section-counter" data-field="specchio_num">01 — Lo specchio</span>
+          <h2 class="section-title" data-field="specchio_title">
+            Riconosci la<br>
+            <span class="text-orange">sensazione</span>?
+          </h2>
+        </div>
+
+        <div class="col-body" data-block-id="specchio_body">
+          <div class="lead-text" data-field="specchio_p1">
+            Trovare nuovi clienti oggi richiede tempo: il mercato si muove lento, le opportunità commerciali entrano a fatica e il CRM aziendale ripropone gli stessi lead freddi da mesi.
+          </div>
+          <div class="body-text" data-field="specchio_p2">
+            LinkedIn è presente ma non genera vendite. La pagina aziendale è ferma, i profili commerciali non trasmettono autorevolezza e le attività sono sporadiche. Senza un Metodo rigoroso, ogni tentativo si spegne prima di diventare una trattativa.
+          </div>
+          <div class="highlight-quote-box" data-field="specchio_callout">
+            <div class="quote-bar"></div>
+            <p>
+              Nel frattempo, un tuo potenziale cliente accetta la richiesta di un competitor e apre con lui una trattativa. Non perché sia migliore: perché ha capito che <strong>LinkedIn non è un social network, ma un sistema di vendita</strong>.
+            </p>
+          </div>
+          <div class="punchline" data-field="specchio_punchline">
+            Il problema non è LinkedIn. Il problema è <strong>non avere un metodo</strong> per usarlo.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04. SEZIONE 02 — IMMAGINA SE
+         ========================================================================== -->
+    <section id="immagina" class="section-pad section-immagina" data-section-id="sec_immagina">
+      <div class="container grid-two-col">
+        <div class="col-head" data-block-id="immagina_heading">
+          <span class="section-counter" data-field="immagina_num">02 — Immagina se</span>
+          <h2 class="section-title" data-field="immagina_title">
+            Chiudi gli occhi.<br>
+            <span class="text-orange">Immagina questo scenario.</span>
+          </h2>
+        </div>
+
+        <div class="col-body" data-block-id="immagina_body">
+          <div class="scenario-timeline">
+            <div class="timeline-step">
+              <div class="step-marker">08:30</div>
+              <div class="step-content">
+                <h4>Lunedì mattina</h4>
+                <p data-field="immagina_p1">Apri LinkedIn e trovi richieste dirette da direttori acquisti, buyer e CEO del tuo settore esatto. Chiedono informazioni, capitolati e vogliono fissare un incontro.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-marker">09:15</div>
+              <div class="step-content">
+                <h4>CRM Commerciale</h4>
+                <p data-field="immagina_p2">Il responsabile vendite apre il calendario: gli slot sono pieni. <strong>Oltre venti opportunità commerciali calde</strong> arrivate da LinkedIn nelle ultime quattro settimane.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-marker">FINE MESE</div>
+              <div class="step-content">
+                <h4>Fatturato a doppia cifra</h4>
+                <p data-field="immagina_p3">Nessuna chiamata a freddo estenuante. Non è fortuna: è il risultato misurabile di un protocollo che lavora per te ininterrottamente.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-statement" data-field="immagina_conclusion">
+            Questo scenario non è un sogno. È ciò che accade quando LinkedIn smette di essere una bacheca aziendale e diventa <strong>un sistema che genera opportunità ogni singola settimana</strong>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05. SEZIONE 03 — CHI SIAMO & EXECUTIVE FOUNDER
+         ========================================================================== -->
+    <section id="chi-siamo" class="section-pad section-chi-siamo" data-section-id="sec_chi_siamo">
+      <div class="container">
+        <div class="grid-two-col">
+          <div class="col-head" data-block-id="chisiamo_heading">
+            <span class="section-counter" data-field="chisiamo_num">03 — Chi siamo</span>
+            <h2 class="section-title" data-field="chisiamo_title">
+              Viviamo di <span class="text-orange">LinkedIn</span>.<br>
+              È l'unica cosa che facciamo.
+            </h2>
+            <div class="chisiamo-lead" data-field="chisiamo_lead">
+              LINQERY™ è la prima <strong>web agency italiana specializzata verticalmente</strong> nel trasformare LinkedIn in un motore commerciale B2B. Non facciamo advertising generalista. Non facciamo SEO. Facciamo una sola cosa con ossessione scientifica.
+            </div>
+          </div>
+
+          <div class="col-body" data-block-id="chisiamo_founder_card">
+            <div class="founder-card-executive">
+              <div class="founder-media-box" data-block-id="founder_media">
+                <div class="founder-avatar-frame">
+                  <div class="avatar-placeholder" data-field="founder_photo_slot">
+                    <span class="avatar-initials">LQ</span>
+                    <span class="avatar-tag">Executive Strategist</span>
+                  </div>
+                </div>
+                <div class="founder-meta">
+                  <h3 class="founder-name" data-field="founder_name">Direzione Strategica LINQERY™</h3>
+                  <span class="founder-role" data-field="founder_role">B2B Acquisition Architecture</span>
+                </div>
+              </div>
+              <div class="founder-statement" data-field="founder_bio">
+                <p>«Non siamo formatori da palcoscenico né consulenti teorici. Siamo operatori sul campo. Abbiamo costruito FUNNELINQ™ per colmare il divario tra una presenza online sterile e il conto economico aziendale. Se un'azienda ha un prodotto valido, il nostro compito è portarla davanti a chi firma i contratti.»</p>
+              </div>
+              <div class="founder-signature-wrap" data-block-id="founder_signature">
+                <div class="signature-line">LINQERY™ Acquisition Protocol</div>
+                <span class="signature-badge">Verified Methodology</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06. SEZIONE 04 — MANIFESTO (LE TRE VERITÀ)
+         ========================================================================== -->
+    <section id="manifesto" class="section-pad section-manifesto" data-section-id="sec_manifesto">
+      <div class="container">
+        <div class="section-header-centered" data-block-id="manifesto_head">
+          <span class="section-counter" data-field="manifesto_num">04 — Manifesto</span>
+          <h2 class="section-title" data-field="manifesto_title">
+            Tre verità che <span class="text-orange">cambiano il gioco</span>.
+          </h2>
+          <p class="section-sub" data-field="manifesto_subtitle">Quello in cui crediamo, prima ancora di quello che facciamo.</p>
+        </div>
+
+        <div class="triptych-grid" data-block-id="manifesto_grid">
+          <div class="triptych-card" data-block-id="manifesto_card_1">
+            <div class="card-roman">I.</div>
+            <h3 class="card-heading" data-field="manifesto_1_titolo">LinkedIn non è marketing.</h3>
+            <p class="card-desc" data-field="manifesto_1_desc">
+              È il più grande database di decisori B2B mai costruito nella storia. Ogni profilo verificato è un buyer potenziale; ogni conversazione aperta con criterio è una trattativa che comincia.
+            </p>
+          </div>
+
+          <div class="triptych-card" data-block-id="manifesto_card_2">
+            <div class="card-roman">II.</div>
+            <h3 class="card-heading" data-field="manifesto_2_titolo">I contenuti non servono a piacere.</h3>
+            <p class="card-desc" data-field="manifesto_2_desc">
+              Servono a posizionarti nella mente del compratore prima ancora che ti contatti. Non celebriamo la tua azienda: svisceriamo i problemi operativi che risolvi per il cliente.
+            </p>
+          </div>
+
+          <div class="triptych-card" data-block-id="manifesto_card_3">
+            <div class="card-roman">III.</div>
+            <h3 class="card-heading" data-field="manifesto_3_titolo">Una rete vale solo se monetizza.</h3>
+            <p class="card-desc" data-field="manifesto_3_desc">
+              Mille follower casuali non valgono dieci contatti con budget decisionale. Costruiamo reti commerciali composte unicamente da profili che possono davvero deliberare l'acquisto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07. SEZIONE 05 — IL COSTO DELL'ATTESA (METRICHE DI MERCATO)
+         ========================================================================== -->
+    <section id="costo-attesa" class="section-pad section-metrics-urgency" data-section-id="sec_costo_attesa">
+      <div class="container">
+        <div class="grid-two-col align-center">
+          <div class="col-head" data-block-id="attesa_heading">
+            <span class="section-counter" data-field="attesa_num">Analisi Mercato</span>
+            <h2 class="section-title" data-field="attesa_title">
+              Quanto stai<br>
+              <span class="text-orange">perdendo</span>, ora.
+            </h2>
+            <p class="body-text" data-field="attesa_desc">
+              Ogni giorno trascorso senza un protocollo commerciale su LinkedIn è fatturato che regali ai tuoi competitor diretti. Sono le statistiche del B2B a testimoniarlo: chi presidia il canale chiude contratti, chi resta a guardare paga il conto.
+            </p>
+          </div>
+
+          <div class="col-body metrics-stack" data-block-id="attesa_stats">
+            <div class="metric-glass-card">
+              <div class="metric-number text-orange" data-field="stat_1_val">95%</div>
+              <div class="metric-txt" data-field="stat_1_txt">dei buyer B2B non sa che la tua azienda esiste se non presidi attivamente LinkedIn.</div>
+            </div>
+            <div class="metric-glass-card">
+              <div class="metric-number text-white" data-field="stat_2_val">87%</div>
+              <div class="metric-txt" data-field="stat_2_txt">dei decisori controlla il profilo LinkedIn prima di rispondere a qualsiasi proposta commerciale.</div>
+            </div>
+            <div class="metric-glass-card">
+              <div class="metric-number text-gradient-orange" data-field="stat_3_val">9 su 10</div>
+              <div class="metric-txt" data-field="stat_3_txt">buyer del tuo specifico settore industriale sono già connessi ad almeno un tuo concorrente.</div>
+            </div>
+            <div class="metric-source-footer" data-field="stat_sources">
+              Fonti: LinkedIn B2B Institute, Osservatorio B2B Politecnico di Milano, dataset aggregato pipeline commerciali.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         08. SEZIONE 06 — IL PROTOCOLLO FUNNELINQ™ (I 4 LIVELLI)
+         ========================================================================== -->
+    <section id="metodo" class="section-pad section-funnelinq" data-section-id="sec_metodo">
+      <div class="container">
+        <div class="funnel-intro" data-block-id="funnel_intro">
+          <span class="section-counter" data-field="metodo_num">05 — Il metodo</span>
+          <h2 class="section-title" data-field="metodo_title">
+            <span class="text-orange">FUNNELINQ™</span>.<br>
+            Quattro livelli. Un solo obiettivo:<br>
+            <span class="text-cyan">opportunità commerciali</span>.
+          </h2>
+          <p class="section-sub" data-field="metodo_subtitle">
+            Non un funnel di marketing. Un protocollo commerciale proprietario, scalabile e misurabile: costruito per generare fatturato, non per collezionare visualizzazioni.
+          </p>
+        </div>
+
+        <div class="pipeline-flow-container" data-block-id="funnel_pipeline">
+          
+          <!-- LIVELLO 1 -->
+          <div class="pipeline-card" data-block-id="livello_1">
+            <div class="pipeline-header">
+              <span class="level-indicator">Livello 01</span>
+              <span class="level-tag" data-field="l1_tag">Posizionamento</span>
+            </div>
+            <h3 class="level-action" data-field="l1_action">Entra<span class="text-orange">.</span></h3>
+            <p class="level-quote">“La prima impressione è già una trattativa.”</p>
+            <p class="level-desc" data-field="l1_desc">
+              Ottimizziamo radicalmente la pagina aziendale e i profili personali di founder e commerciali, convertendoli da curriculum inerti in veri asset di vendita capaci di rassicurare il buyer.
+            </p>
+            <div class="deliverable-box">
+              <span class="deliv-label">COSA OTTIENI</span>
+              <span class="deliv-text" data-field="l1_deliverable">Profili e pagina attivati come asset di vendita ad alta conversione.</span>
+            </div>
+          </div>
+
+          <!-- LIVELLO 2 -->
+          <div class="pipeline-card" data-block-id="livello_2">
+            <div class="pipeline-header">
+              <span class="level-indicator">Livello 02</span>
+              <span class="level-tag" data-field="l2_tag">Voce</span>
+            </div>
+            <h3 class="level-action" data-field="l2_action">Parla<span class="text-orange">.</span></h3>
+            <p class="level-quote">“Al buyer interessa solo ciò che risolvi.”</p>
+            <p class="level-desc" data-field="l2_desc">
+              Creiamo piani editoriali orientati al problema: analisi di settore, casi pratici e metodologie di lavoro. Contenuti che generano rispetto tecnico e fanno dire al buyer: «Questi capiscono il mio mercato».
+            </p>
+            <div class="deliverable-box">
+              <span class="deliv-label">COSA OTTIENI</span>
+              <span class="deliv-text" data-field="l2_deliverable">Una voce autorevole che il tuo mercato target inizia a riconoscere.</span>
+            </div>
+          </div>
+
+          <!-- LIVELLO 3 -->
+          <div class="pipeline-card" data-block-id="livello_3">
+            <div class="pipeline-header">
+              <span class="level-indicator">Livello 03</span>
+              <span class="level-tag" data-field="l3_tag">Rete</span>
+            </div>
+            <h3 class="level-action" data-field="l3_action">Incontra<span class="text-orange">.</span></h3>
+            <p class="level-quote">“Mille follower non valgono dieci decisori.”</p>
+            <p class="level-desc" data-field="l3_desc">
+              Selezione chirurgica dei target per industry, seniority e dimensione d'impresa. Connessioni avviate con messaggi mirati e non invasivi, fondati su dinamiche psicologiche di relazione B2B.
+            </p>
+            <div class="deliverable-box">
+              <span class="deliv-label">COSA OTTIENI</span>
+              <span class="deliv-text" data-field="l3_deliverable">Un network commerciale proprietario di buyer e decisori pronti al dialogo.</span>
+            </div>
+          </div>
+
+          <!-- LIVELLO 4 -->
+          <div class="pipeline-card" data-block-id="livello_4">
+            <div class="pipeline-header">
+              <span class="level-indicator">Livello 04</span>
+              <span class="level-tag" data-field="l4_tag">Crescita</span>
+            </div>
+            <h3 class="level-action" data-field="l4_action">Chiudi<span class="text-orange">.</span></h3>
+            <p class="level-quote">“Da conversazione a contratto firmato.”</p>
+            <p class="level-desc" data-field="l4_desc">
+              Apriamo il confronto, gestiamo i follow-up, qualifichiamo il fabbisogno e trasferiamo al tuo commerciale appuntamenti caldi pronti per la call decisionale. Il percorso è lineare: rete → dialogo → call → contratto.
+            </p>
+            <div class="deliverable-box">
+              <span class="deliv-label">COSA OTTIENI</span>
+              <span class="deliv-text" data-field="l4_deliverable">Opportunità commerciali e appuntamenti misurabili ogni singola settimana.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="funnel-footer-cta" data-block-id="funnel_cta_banner">
+          <div class="funnel-cta-inner">
+            <span class="cta-title">FUNNELINQ™ è un metodo proprietario di LINQERY™.</span>
+            <a href="#candidati" class="btn btn-primary">
+              <span>Applichiamolo alla tua azienda</span>
+              <svg class="icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         09. SEZIONE 07 — FALSI MITI SMONTATI
+         ========================================================================== -->
+    <section id="falsi-miti" class="section-pad section-falsi-miti" data-section-id="sec_falsi_miti">
+      <div class="container">
+        <div class="grid-two-col">
+          <div class="col-head" data-block-id="miti_heading">
+            <span class="section-counter" data-field="miti_num">Falsi miti</span>
+            <h2 class="section-title" data-field="miti_title">
+              Prima di procedere,<br>
+              <span class="text-orange">sciogliamo i dubbi</span>.
+            </h2>
+            <p class="body-text" data-field="miti_sub">
+              Le quattro convinzioni fallaci che frenano le imprese prima ancora di testare il canale. Le smontiamo punto su punto.
+            </p>
+          </div>
+
+          <div class="col-body miti-accordion-grid" data-block-id="miti_cards">
+            
+            <div class="mito-box">
+              <div class="mito-question">«LinkedIn è saturo, ormai non funziona più.»</div>
+              <p class="mito-answer" data-field="mito_1_risposta">
+                La saturazione colpisce lo spam e i messaggi automatici copia-incolla. Quando il dialogo è personalizzato sui dolori specifici del buyer, il tasso di risposta supera il 40%.
+              </p>
+            </div>
+
+            <div class="mito-box">
+              <div class="mito-question">«Serve pubblicare ogni giorno per avere risultati.»</div>
+              <p class="mito-answer" data-field="mito_2_risposta">
+                La frequenza compulsiva genera solo rumore. Due contenuti strategici al mese calibrati sui problemi industriali convertono più di venti post generici che cercano like.
+              </p>
+            </div>
+
+            <div class="mito-box">
+              <div class="mito-question">«Funziona solo se possiedi già migliaia di follower.»</div>
+              <p class="mito-answer" data-field="mito_3_risposta">
+                I follower non firmano contratti, i decisori sì. Un profilo con 600 connessioni mirate tra direttori generali chiude dieci volte più fatturato di un profilo da 50k follower casuali.
+              </p>
+            </div>
+
+            <div class="mito-box">
+              <div class="mito-question">«Il nostro settore è troppo specialistico e di nicchia.»</div>
+              <p class="mito-answer" data-field="mito_4_risposta">
+                Nei mercati iper-verticali la competizione su LinkedIn è quasi inesistente. Chi presidia per primo il settore con un metodo rigoroso diventa la scelta obbligata del mercato.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         10. SEZIONE 08 — CASI STUDIO & PROVE SUL CAMPO
+         ========================================================================== -->
+    <section id="casi-studio" class="section-pad section-casi-studio" data-section-id="sec_casi_studio">
+      <div class="container">
+        <div class="section-header-centered" data-block-id="casi_head">
+          <span class="section-counter" data-field="casi_num">06 — Prova</span>
+          <h2 class="section-title" data-field="casi_title">
+            Cosa succede quando il <span class="text-orange">Metodo FUNNELINQ™</span> entra in azienda.
+          </h2>
+          <p class="section-sub" data-field="casi_sub">Metriche certificate a 6 mesi dall'attivazione del protocollo.</p>
+        </div>
+
+        <!-- KPI Ticker Rapidi -->
+        <div class="quick-kpi-bar" data-block-id="casi_quick_kpi">
+          <div class="kpi-tag"><strong class="text-orange">+950%</strong> Traffico qualificato ai profili</div>
+          <div class="kpi-tag"><strong class="text-emerald">+1.100</strong> Connessioni target in 90 giorni</div>
+          <div class="kpi-tag"><strong class="text-white">×3</strong> Contratti industriali chiusi in 45 giorni</div>
+        </div>
+
+        <!-- Selettore Tab Casi Studio -->
+        <div class="cases-tab-interface" data-block-id="cases_tabs_wrapper">
+          <div class="tab-controls" role="tablist">
+            <button class="tab-btn active" data-tab-target="caso-1">Produzione Macchinari</button>
+            <button class="tab-btn" data-tab-target="caso-2">Chimico — Biologico</button>
+            <button class="tab-btn" data-tab-target="caso-3">Energie Rinnovabili</button>
+            <button class="tab-btn" data-tab-target="caso-4">Industria Manifatturiera</button>
+            <button class="tab-btn highlight-tab" data-tab-target="caso-5">La Tua Azienda</button>
+          </div>
+
+          <div class="tab-panels-wrapper">
+            
+            <!-- CASO 1 -->
+            <div id="caso-1" class="case-panel active" data-block-id="caso_studio_1">
+              <div class="case-grid">
+                <div class="case-meta">
+                  <span class="case-tag">Caso Studio 01</span>
+                  <h3 class="case-industry" data-field="c1_industry">Produzione Macchinari Industriali</h3>
+                  <div class="case-duration">6 mesi dopo l'attivazione</div>
+                  <div class="case-premise" data-field="c1_premise">
+                    <strong>Punto di partenza:</strong> Profilo commerciale fermo, zero conversazioni qualificate nei mesi precedenti, affidamento a fiere annuali.
+                  </div>
+                </div>
+                <div class="case-numbers">
+                  <div class="num-block">
+                    <span class="num-big text-white" data-field="c1_kpi_1_val">+1.600</span>
+                    <span class="num-label" data-field="c1_kpi_1_lbl">Connessioni target con buyer e decisori</span>
+                  </div>
+                  <div class="num-block">
+                    <span class="num-big text-orange" data-field="c1_kpi_2_val">84</span>
+                    <span class="num-label" data-field="c1_kpi_2_lbl">Opportunità e trattative commerciali aperte</span>
+                  </div>
+                </div>
+                <div class="case-quote-box">
+                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                  <p class="quote-text" data-field="c1_quote">
+                    «In sei mesi LinkedIn è diventato il canale commerciale più redditizio per la nostra azienda. Il salto di qualità è avvenuto quando abbiamo smesso di considerarlo una vetrina e abbiamo attivato il protocollo.»
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CASO 2 -->
+            <div id="caso-2" class="case-panel" data-block-id="caso_studio_2">
+              <div class="case-grid">
+                <div class="case-meta">
+                  <span class="case-tag">Caso Studio 02</span>
+                  <h3 class="case-industry" data-field="c2_industry">Settore Chimico — Biologico</h3>
+                  <div class="case-duration">6 mesi dopo l'attivazione</div>
+                  <div class="case-premise" data-field="c2_premise">
+                    <strong>Punto di partenza:</strong> Presenza LinkedIn minima, contatti limitati a fornitori storici, nessuna strategia commerciale outbound.
+                  </div>
+                </div>
+                <div class="case-numbers">
+                  <div class="num-block">
+                    <span class="num-big text-white" data-field="c2_kpi_1_val">+2.000</span>
+                    <span class="num-label" data-field="c2_kpi_1_lbl">Connessioni con responsabili R&D e Procurement</span>
+                  </div>
+                  <div class="num-block">
+                    <span class="num-big text-orange" data-field="c2_kpi_2_val">108</span>
+                    <span class="num-label" data-field="c2_kpi_2_lbl">Opportunità commerciali tracciate a CRM</span>
+                  </div>
+                </div>
+                <div class="case-quote-box">
+                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                  <p class="quote-text" data-field="c2_quote">
+                    «Un flusso costante di contatti qualificati con un processo misurabile. In una nicchia complessa come la nostra, la concorrenza è stata totalmente anticipata.»
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CASO 3 -->
+            <div id="caso-3" class="case-panel" data-block-id="caso_studio_3">
+              <div class="case-grid">
+                <div class="case-meta">
+                  <span class="case-tag">Caso Studio 03</span>
+                  <h3 class="case-industry" data-field="c3_industry">Energie Rinnovabili & Impianti</h3>
+                  <div class="case-duration">6 mesi dopo l'attivazione</div>
+                  <div class="case-premise" data-field="c3_premise">
+                    <strong>Punto di partenza:</strong> Zero metodo, profilo aziendale usato sporadicamente solo per condividere partecipazioni a fiere.
+                  </div>
+                </div>
+                <div class="case-numbers">
+                  <div class="num-block">
+                    <span class="num-big text-white" data-field="c3_kpi_1_val">+1.300</span>
+                    <span class="num-label" data-field="c3_kpi_1_lbl">Connessioni con CFO e Plant Manager</span>
+                  </div>
+                  <div class="num-block">
+                    <span class="num-big text-orange" data-field="c3_kpi_2_val">68</span>
+                    <span class="num-label" data-field="c3_kpi_2_lbl">Trattative di fornitura avviate</span>
+                  </div>
+                </div>
+                <div class="case-quote-box">
+                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                  <p class="quote-text" data-field="c3_quote">
+                    «In pochi mesi LinkedIn è diventato un asset commerciale stabile, capace di portare opportunità con ticket medio elevato su base settimanale.»
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CASO 4 -->
+            <div id="caso-4" class="case-panel" data-block-id="caso_studio_4">
+              <div class="case-grid">
+                <div class="case-meta">
+                  <span class="case-tag">Caso Studio 04</span>
+                  <h3 class="case-industry" data-field="c4_industry">Industria Manifatturiera</h3>
+                  <div class="case-duration">6 mesi dopo l'attivazione</div>
+                  <div class="case-premise" data-field="c4_premise">
+                    <strong>Punto di partenza:</strong> Pagina attiva come bacheca istituzionale, commerciali disconnessi dalla presenza corporate.
+                  </div>
+                </div>
+                <div class="case-numbers">
+                  <div class="num-block">
+                    <span class="num-big text-white" data-field="c4_kpi_1_val">+1.800</span>
+                    <span class="num-label" data-field="c4_kpi_1_lbl">Decision maker del canale industriale</span>
+                  </div>
+                  <div class="num-block">
+                    <span class="num-big text-orange" data-field="c4_kpi_2_val">76</span>
+                    <span class="num-label" data-field="c4_kpi_2_lbl">Richieste di preventivo e audit ricevute</span>
+                  </div>
+                </div>
+                <div class="case-quote-box">
+                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                  <p class="quote-text" data-field="c4_quote">
+                    «Oggi è il nostro reparto vendite a chiederci di accelerare i follow-up, non più il marketing a dover giustificare il proprio budget.»
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CASO 5 (LA TUA AZIENDA) -->
+            <div id="caso-5" class="case-panel" data-block-id="caso_studio_5">
+              <div class="case-grid future-case-grid">
+                <div class="case-meta">
+                  <span class="case-tag tag-future">Semestre in corso</span>
+                  <h3 class="case-industry">Il Prossimo Caso Studio</h3>
+                  <div class="case-duration">La tua azienda · Il tuo settore</div>
+                  <div class="case-premise">
+                    Un'analisi preliminare di 30 minuti senza impegno per verificare se nel tuo mercato esistono le condizioni per implementare FUNNELINQ™.
+                  </div>
+                </div>
+                <div class="case-numbers">
+                  <div class="num-block">
+                    <span class="num-big text-slate-400">???</span>
+                    <span class="num-label">Buyer profilati nella tua nicchia</span>
+                  </div>
+                  <div class="num-block">
+                    <span class="num-big text-orange">???</span>
+                    <span class="num-label">Nuove trattative commerciali mensili</span>
+                  </div>
+                </div>
+                <div class="case-action-card">
+                  <p>La differenza tra rimanere uno spettatore e diventare un caso studio misurabile è attivare il protocollo.</p>
+                  <a href="#candidati" class="btn btn-primary btn-block">Candidati per l'audit</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         11. SEZIONE 09 — L'ECOSISTEMA & DEDUCIBILITÀ 100%
+         ========================================================================== -->
+    <section id="ecosistema" class="section-pad section-ecosistema" data-section-id="sec_ecosistema">
+      <div class="container">
+        <div class="section-header-centered" data-block-id="eco_head">
+          <span class="section-counter" data-field="eco_num">07 — L'ecosistema LINQERY™</span>
+          <h2 class="section-title" data-field="eco_title">
+            Non compri solo un servizio.<br>
+            <span class="text-orange">Entri in una rete</span>.
+          </h2>
+          <p class="section-sub" data-field="eco_subtitle">
+            Ogni partner commerciale LINQERY™ accede a una community attiva di decisori con amplificazione organica incrociata.
+          </p>
+        </div>
+
+        <div class="grid-four-col" data-block-id="eco_grid">
+          <div class="eco-card">
+            <span class="eco-num">01</span>
+            <h4 class="eco-title" data-field="eco_1_title">Community Professionale</h4>
+            <p class="eco-desc" data-field="eco_1_desc">Ecosistema riservato di founder, C-level e direttori vendite. Le relazioni nate nel network si trasformano spesso in partnership commerciali dirette.</p>
+          </div>
+          <div class="eco-card">
+            <span class="eco-num">02</span>
+            <h4 class="eco-title" data-field="eco_2_title">Network tra Clienti</h4>
+            <p class="eco-desc" data-field="eco_2_desc">Canale di scambio prioritario dove domanda e offerta tra le nostre aziende partner generano trattative interne a costo di acquisizione zero.</p>
+          </div>
+          <div class="eco-card">
+            <span class="eco-num">03</span>
+            <h4 class="eco-title" data-field="eco_3_title">Visibilità Incrociata</h4>
+            <p class="eco-desc" data-field="eco_3_desc">Interazioni coordinate nei primi 60 minuti dalla pubblicazione: la finestra cruciale in cui l'algoritmo di LinkedIn stabilisce la portata organica.</p>
+          </div>
+          <div class="eco-card">
+            <span class="eco-num">04</span>
+            <h4 class="eco-title" data-field="eco_4_title">Effetto Boost Organico</h4>
+            <p class="eco-desc" data-field="eco_4_desc">I tuoi post raggiungono da 3 a 5 volte più decisori rispetto alla media di settore grazie alla spinta congiunta del network partner.</p>
+          </div>
+        </div>
+
+        <!-- Box Vantaggio Fiscale -->
+        <div class="tax-advantage-banner" data-block-id="eco_tax_box">
+          <div class="tax-tag">08 — Fiscalità d'Impresa</div>
+          <div class="tax-grid">
+            <div class="tax-left">
+              <h3 class="tax-title">Deducibili al <span class="text-orange">100%</span>.</h3>
+            </div>
+            <div class="tax-right">
+              <p data-field="tax_desc">
+                I servizi LINQERY™ rientrano integralmente nei costi di marketing strategico e consulenza aziendale B2B: <strong>categorie fiscalmente deducibili al 100% dal reddito d’impresa</strong>. Ogni euro allocato nel Metodo FUNNELINQ™ riduce l’imponibile fiscale e sostiene l'acquisizione di nuove commesse.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         12. SEZIONE 10 — OBIEZIONI RISOLTE (FAQ SEMANTICHE)
+         ========================================================================== -->
+    <section id="faq" class="section-pad section-faq" data-section-id="sec_faq">
+      <div class="container">
+        <div class="grid-two-col">
+          <div class="col-head" data-block-id="faq_head">
+            <span class="section-counter" data-field="faq_num">09 — Le risposte che servono</span>
+            <h2 class="section-title" data-field="faq_title">
+              Le obiezioni che ci aspettiamo.<br>
+              <span class="text-orange">E come le risolviamo.</span>
+            </h2>
+            <p class="body-text" data-field="faq_desc">
+              Le abbiamo sentite tutte. Spesso gli imprenditori hanno ragione a essere scettici: perché hanno affidato LinkedIn ad agenzie generaliste che non sanno vendere nel B2B.
+            </p>
+          </div>
+
+          <div class="col-body faq-stack" data-block-id="faq_accordion_group">
+            
+            <details class="faq-item" data-block-id="faq_1">
+              <summary class="faq-summary">
+                <span data-field="faq_1_q">“LinkedIn porta solo like e vanità, non clienti reali.”</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-content" data-field="faq_1_a">
+                Esatto, se lo tratti come un social media. FUNNELINQ™ lo governa come una linea commerciale: ogni azione è calibrata per innescare dialoghi con decisori d'acquisto, non per rincorrere interazioni vuote.
+              </div>
+            </details>
+
+            <details class="faq-item" data-block-id="faq_2">
+              <summary class="faq-summary">
+                <span data-field="faq_2_q">“I nostri decisori e buyer non usano LinkedIn.”</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-content" data-field="faq_2_a">
+                Oltre il 90% dei decisori B2B italiani ha un profilo regolarmente attivo. Spesso non pubblicano contenuti personali, ma leggono, valutano le aziende e rispondono a proposte autorevoli. Te lo dimostriamo con dati reali durante l'audit.
+              </div>
+            </details>
+
+            <details class="faq-item" data-block-id="faq_3">
+              <summary class="faq-summary">
+                <span data-field="faq_3_q">“Non abbiamo tempo interno da dedicare al canale.”</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-content" data-field="faq_3_a">
+                Non serve il tempo del tuo team. Gestiamo posizionamento, contenuti, espansione della rete e avvio del dialogo. I tuoi commerciali intervengono solo quando l’appuntamento di vendita è già confermato in agenda.
+              </div>
+            </details>
+
+            <details class="faq-item" data-block-id="faq_4">
+              <summary class="faq-summary">
+                <span data-field="faq_4_q">“Abbiamo già provato con un'altra agenzia senza risultati.”</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-content" data-field="faq_4_a">
+                Le agenzie generaliste gestiscono LinkedIn come fosse Instagram: grafiche preconfezionate e post autoreferenziali. LINQERY™ è una struttura di vendita B2B: applichiamo psicologia di trattativa e metriche di conversione.
+              </div>
+            </details>
+
+            <details class="faq-item" data-block-id="faq_5">
+              <summary class="faq-summary">
+                <span data-field="faq_5_q">“Temo di investire budget senza un ritorno misurabile.”</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-content" data-field="faq_5_a">
+                Lavoriamo con KPI contrattualizzati e rendicontazione settimanale. Se durante i 30 minuti di audit preliminare constatiamo che il tuo mercato non ha volumi sufficienti su LinkedIn, te lo diciamo chiaramente e non avviamo la collaborazione.
+              </div>
+            </details>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         13. SEZIONE 11 — SELEZIONE, AUDIT & CANDIDATURA (EX CANDIDATI-ORA)
+         ========================================================================== -->
+    <section id="candidati" class="section-pad section-candidati" data-section-id="sec_candidati">
+      <div class="container">
+        
+        <div class="selection-intro-banner" data-block-id="selezione_statement">
+          <div class="badge-tag">10 — Selezione & Condizioni</div>
+          <h2 class="selection-title" data-field="selezione_title">
+            Lavoriamo con <span class="text-orange">pochissime aziende</span> al mese. Di proposito.
+          </h2>
+          <p class="selection-desc" data-field="selezione_desc">
+            Ogni progetto FUNNELINQ™ impegna un team dedicato e analisi di settore profonde. Non è un preventivo standard: è una verifica di compatibilità. Se constatiamo che non possiamo produrre un impatto economico positivo, rifiutiamo l'incarico.
+          </p>
+        </div>
+
+        <div class="application-layout-grid">
+          
+          <div class="application-info-col" data-block-id="audit_specs">
+            <h3 class="app-info-title">Invia la candidatura aziendale</h3>
+            <p class="app-info-sub">Verificheremo il posizionamento della tua azienda e ti ricontatteremo per confermare lo slot di audit riservato.</p>
+            
+            <div class="spec-pills-stack">
+              <div class="spec-row">
+                <span class="spec-time">48h</span>
+                <span class="spec-lbl">Tempo medio di riscontro</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-time">30 min</span>
+                <span class="spec-lbl">Durata dell'audit strategico</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-time">0 €</span>
+                <span class="spec-lbl">Costo della sessione diagnostica</span>
+              </div>
+              <div class="spec-row highlight-spec" data-block-id="disponibilita_slot">
+                <span class="spec-time text-orange" data-field="valore_slot">2 / 5</span>
+                <span class="spec-lbl" data-field="nota_slot">Posti disponibili per il mese in corso</span>
+              </div>
+            </div>
+
+            <div class="direct-contact-hint">
+              Preferisci una comunicazione diretta?<br>
+              <a href="mailto:info@linqery.com" class="text-orange underline" data-field="direct_email">info@linqery.com</a> · <a href="tel:+393280956192" class="text-slate-300" data-field="direct_phone">+39 328 095 6192</a>
+            </div>
+          </div>
+
+          <div class="application-form-col" data-block-id="audit_form_container">
+            <form id="auditForm" class="cyber-form-card" data-block-id="audit_form">
+              <div class="form-row-two">
+                <div class="form-group">
+                  <label for="f_azienda">Azienda *</label>
+                  <input type="text" id="f_azienda" name="azienda" required placeholder="Ragione Sociale" data-field="input_azienda">
+                </div>
+                <div class="form-group">
+                  <label for="f_sito">Sito Web *</label>
+                  <input type="text" id="f_sito" name="sito" required placeholder="www.azienda.it" data-field="input_sito">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="f_nome">Nome e Cognome *</label>
+                <input type="text" id="f_nome" name="nome" required placeholder="Nome referente decisionale" data-field="input_nome">
+              </div>
+
+              <div class="form-row-two">
+                <div class="form-group">
+                  <label for="f_telefono">Telefono diretto *</label>
+                  <input type="tel" id="f_telefono" name="telefono" required placeholder="+39 ..." data-field="input_telefono">
+                </div>
+                <div class="form-group">
+                  <label for="f_email">Email aziendale *</label>
+                  <input type="email" id="f_email" name="email" required placeholder="nome@azienda.it" data-field="input_email">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-submit" id="btnSubmitForm">
+                <span>Invia la candidatura per l'Audit</span>
+                <svg class="icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+
+              <div class="form-guarantee-note">
+                <svg viewBox="0 0 16 16" fill="currentColor" class="lock-icon"><path d="M8 1a3.5 3.5 0 00-3.5 3.5V6H3a1 1 0 00-1 1v7a1 1 0 001 1h10a1 1 0 001-1V7a1 1 0 00-1-1h-1.5V4.5A3.5 3.5 0 008 1zm2 5H6V4.5a2 2 0 114 0V6z"/></svg>
+                <span>Zero-Knowledge: candidatura valutata internamente. Nessun dato condiviso o rivenduto a terzi.</span>
+              </div>
+
+              <div id="formFeedback" class="form-feedback hidden"></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       14. FOOTER ISTITUZIONALE
+       ========================================================================== -->
+  <footer class="footer-executive" data-section-id="sec_footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-col" data-block-id="footer_brand">
+        <a href="#hero" class="brand-link">
+          <span class="brand-text">LINQERY<span class="brand-mark">™</span></span>
+        </a>
+        <p class="footer-tagline" data-field="footer_tagline">
+          L’unica agenzia in Italia specializzata verticalmente nel trasformare LinkedIn in un asset commerciale prevedibile per aziende B2B.
+        </p>
+        <div class="footer-legal-data" data-field="footer_tax_info">
+          P.IVA: IT16621461009 · Sede Operativa Italia
+        </div>
+      </div>
+
+      <div class="footer-nav-col" data-block-id="footer_navigation">
+        <span class="footer-heading">ESPLORA</span>
+        <ul class="footer-list">
+          <li><a href="#metodo">Metodo FUNNELINQ™</a></li>
+          <li><a href="#specchio">Perché Noi</a></li>
+          <li><a href="#casi-studio">Casi Studio B2B</a></li>
+          <li><a href="#candidati">Richiesta Audit</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact-col" data-block-id="footer_contacts">
+        <span class="footer-heading">CONTATTI DIRETTI</span>
+        <ul class="footer-list">
+          <li><a href="mailto:info@linqery.com" data-field="footer_email">info@linqery.com</a></li>
+          <li><a href="tel:+393280956192" data-field="footer_phone">+39 328 095 6192</a></li>
+          <li><span class="footer-hours">Lun - Ven: 09:00 - 18:30</span></li>
+          <li class="footer-social-row">
+            <a href="https://www.linkedin.com/company/linqery%E2%84%A2/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar" data-block-id="footer_copyright">
+      <div class="container footer-bottom-inner">
+        <span class="copyright-txt">© 2026 LINQERY™. Tutti i diritti riservati.</span>
+        <span class="trademark-notice">FUNNELINQ™ è un marchio e metodo proprietario registrato di LINQERY™.</span>
+        <div class="legal-mini-links">
+          <a href="#hero">Privacy by Design</a>
+          <a href="#hero">Zero Cookies Required</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
